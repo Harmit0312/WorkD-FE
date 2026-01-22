@@ -1,0 +1,342 @@
+/* Keyframes for Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes slide {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 141px;
+    }
+}
+
+@keyframes slidein {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 132px;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes floatParticles {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Container */
+.container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 80px;
+    /* To offset fixed navbar */
+}
+
+/* Navbar */
+.navbar {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    /* background: rgba(0, 0, 0, 0.9); */
+    background-color: rgb(2, 140, 140);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: fadeIn 1s ease-out;
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 141px;
+    height: 69px;
+    border-radius: 60px;
+    object-fit: cover;
+    background-color: white;
+    animation: slide 0.6s ease-out;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    animation: slidein 0.6s ease-in;
+}
+
+.nav-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    /* color: #2a1b3d; */
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    /* padding: 80px 20px 40px; */
+    padding: 40px 20px;
+    text-align: center;
+    animation: fadeIn 1.2s ease-out;
+}
+
+.title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 150;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 10px rgba(42, 27, 61, 0.5);
+}
+
+.typing-subtitle {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    margin-bottom: 40px;
+    color: #bdc3c7;
+    overflow: hidden;
+    border-right: 3px solid #2a1b3d;
+    white-space: nowrap;
+    animation: typing 3s steps(69, end), blink 0.75s step-end infinite;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.primary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    /* background: linear-gradient(45deg, #e74c3c, #c0392b); */
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); */
+}
+
+.primary-button:hover {
+    transform: translateY(-3px);
+    /* box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6); */
+}
+
+.secondary-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secondary-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+    transform: translateY(-3px);
+}
+
+/* Features Section */
+.features-section {
+    padding: 80px 20px;
+    background: #fff;
+    color: #333;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.feature-card h3 {
+    margin: 20px 0 10px;
+    color: #2a1b3d;
+}
+
+.feature-card p {
+    color: #666;
+}
+
+/* Footer */
+.footer {
+    padding: 40px 20px;
+    /* background: linear-gradient(150deg, #141e30, #243b55); */
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.scroll-to-top {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.scroll-to-top:hover {
+    background: linear-gradient(180deg, #141e30, #243b55);
+}
+
+/* Particles */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #2a1b3d;
+    border-radius: 50%;
+    animation: floatParticles 8s ease-in-out infinite;
+}
+
+.particle-1 {
+    top: 20%;
+    left: 20%;
+}
+
+.particle-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 4s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+}
