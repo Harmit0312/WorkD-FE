@@ -1,0 +1,237 @@
+/* Keyframes */
+@keyframes fadeIn-register {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp-register {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-register {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 141px;
+    }
+}
+
+@keyframes slidein-register {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 105px;
+    }
+}
+
+/* Container */
+.signup-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding-top: -80px;
+}
+
+/* Navbar */
+.signup-navbar {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    /* background: rgba(0, 0, 0, 0.9); */
+    background-color: rgb(2, 140, 140);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: fadeIn-register 1s ease-out;
+    box-sizing: border-box;
+}
+
+.signup-logo {
+    width: 141px;
+    height: 60px;
+    border-radius: 60px;
+    object-fit: cover;
+    background-color: white;
+    animation: slide-register 0.6s ease-out;
+}
+
+.signup-nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    animation: slidein-register 0.6s ease-in;
+}
+
+.signup-nav-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.signup-nav-link:hover {
+    /* color: #2a1b3d; */
+    text-decoration: underline;
+}
+
+/* Signup Section */
+.signup-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 100px 20px;
+    animation: slideUp-register 1.5s ease-out;
+}
+
+.signup-form-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    color: #333;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.signup-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.signup-icon {
+    position: absolute;
+    left: 15px;
+    color: #2a1b3d;
+}
+
+.signup-input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.signup-input-group input:focus {
+    border-color: #2a1b3d;
+    outline: none;
+}
+
+.signup-primary-button {
+    padding: 12px;
+    /* background: linear-gradient(45deg, #e74c3c, #c0392b); */
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.signup-primary-button:hover {
+    /* background: linear-gradient(45deg, #c0392b, #a93226); */
+    background-color: white;
+    color: rgb(2, 140, 140);
+    border: solid 1px rgb(2, 140, 140);
+}
+
+.signup-link-text {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.signup-link {
+    color: #2a1b3d;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+/* Add to existing CSS */
+.signup-select {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background: #fff;
+    color: #333;
+}
+
+.signup-select:focus {
+    border-color: #2a1b3d;
+    outline: none;
+}
+
+/* Footer */
+.signup-footer {
+    padding: 40px 20px;
+    /* background: #008080; */
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.signup-footer-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.signup-footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .signup-navbar {
+        padding: 15px 20px;
+    }
+
+    .signup-form-card {
+        padding: 30px;
+    }
+}
