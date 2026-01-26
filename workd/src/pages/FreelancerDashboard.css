@@ -1,0 +1,113 @@
+/* Keyframes for Animations */
+@keyframes fadeIn-freelancer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp-freelancer {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Container */
+.freelancer-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 80px;
+}
+
+/* Navbar */
+.freelancer-navbar {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    background-color: rgb(2, 140, 140);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: fadeIn-freelancer 1s ease-out;
+    box-sizing: border-box;
+}
+
+.freelancer-logo {
+    width: 141px;
+    height: 69px;
+    border-radius: 60px;
+    object-fit: cover;
+    background-color: white;
+    animation: slideUp-freelancer 0.6s ease-out;
+}
+
+.freelancer-nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    animation: slideUp-freelancer 0.6s ease-in;
+}
+
+.freelancer-nav-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.freelancer-nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.freelancer-footer {
+    padding: 40px 20px;
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.freelancer-footer-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.freelancer-footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .freelancer-navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .freelancer-nav-links {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

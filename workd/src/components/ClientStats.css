@@ -1,0 +1,212 @@
+/* Keyframes for Animations */
+@keyframes slideUp-client-stats {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Stats Section */
+.client-stats-section {
+    padding: 20px 15px; /* Smaller padding */
+    animation: slideUp-client-stats 1s ease-out; /* Faster animation */
+}
+
+.client-stats-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Much smaller title */
+    font-weight: 150;
+    color: #fff;
+    margin-bottom: 20px; /* Smaller margin */
+    text-shadow: 0 2px 5px rgba(42, 27, 61, 0.5);
+    text-align: center;
+}
+
+/* Overview Stats */
+.client-overview {
+    margin-bottom: 20px; /* Smaller margin */
+}
+
+.client-stat-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px; /* Tighter gap */
+}
+
+.client-stat-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px; /* Smaller radius */
+    border: 1px solid rgba(2, 140, 140, 0.3);
+    transition: transform 0.2s; /* Faster transition */
+}
+
+.client-stat-item:hover {
+    transform: translateY(-2px); /* Less lift */
+}
+
+.client-stat-item div {
+    margin-left: 10px;
+}
+
+.client-stat-item h4 {
+    margin: 0;
+    color: #ecf0f1;
+    font-size: 0.9rem; /* Smaller font */
+}
+
+.client-stat-item p {
+    margin: 2px 0 0;
+    font-size: 1.2rem; /* Smaller number */
+    font-weight: 700;
+    color: rgb(2, 140, 140);
+}
+
+.client-progress-bar {
+    width: 80px; /* Smaller width */
+    height: 6px; /* Smaller height */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.client-progress-fill {
+    height: 100%;
+    background: rgb(2, 140, 140);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Recent Activity */
+.client-activity {
+    margin-bottom: 20px; /* Smaller margin */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px;
+    border: 1px solid rgba(2, 140, 140, 0.2);
+}
+
+.client-activity h2 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 1.1rem; /* Smaller font */
+}
+
+.client-activity-list {
+    list-style: none;
+    padding: 0;
+}
+
+.client-activity-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0; /* Smaller padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bdc3c7;
+}
+
+.client-activity-item:last-child {
+    border-bottom: none;
+}
+
+.client-activity-item small {
+    margin-right: 10px;
+    font-size: 0.8rem; /* Smaller font */
+}
+
+/* Recommendations */
+.client-recommendations {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px;
+    border: 1px solid rgba(2, 140, 140, 0.2);
+}
+
+.client-recommendations h2 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1.1rem; /* Smaller font */
+}
+
+.client-recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min width */
+    gap: 10px; /* Tighter gap */
+}
+
+.client-recommendation-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s; /* Faster transition */
+    border: 1px solid rgba(2, 140, 140, 0.3);
+}
+
+.client-recommendation-card:hover {
+    transform: translateY(-2px); /* Less lift */
+}
+
+.client-recommendation-card h4 {
+    margin: 5px 0;
+    color: #ecf0f1;
+    font-size: 1rem; /* Smaller font */
+}
+
+.client-recommendation-card p {
+    color: #bdc3c7;
+    margin: 2px 0;
+    font-size: 0.85rem; /* Smaller font */
+}
+
+.client-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+    color: #ffd700;
+}
+
+.client-price {
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    margin: 5px 0;
+    font-size: 0.9rem; /* Smaller font */
+}
+
+.client-hire-btn {
+    background: rgb(2, 140, 140);
+    color: #fff;
+    border: none;
+    padding: 6px 12px; /* Smaller padding */
+    border-radius: 3px; /* Smaller radius */
+    cursor: pointer;
+    transition: background 0.2s; /* Faster transition */
+    font-size: 0.85rem; /* Smaller font */
+}
+
+.client-hire-btn:hover {
+    background: #006666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .client-stat-row {
+        flex-direction: column;
+    }
+
+    .client-recommendations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .client-stats-title {
+        font-size: 1.8rem;
+    }
+}
