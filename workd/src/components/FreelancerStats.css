@@ -1,0 +1,183 @@
+/* Keyframes for Animations */
+@keyframes slideUp-freelancer-stats {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Stats Section */
+.freelancer-stats-section {
+    padding: 20px 15px; /* Even smaller padding */
+    animation: slideUp-freelancer-stats 1s ease-out; /* Faster animation */
+}
+
+.freelancer-stats-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Much smaller title */
+    font-weight: 150;
+    color: #fff;
+    margin-bottom: 20px; /* Smaller margin */
+    text-shadow: 0 2px 5px rgba(42, 27, 61, 0.5);
+    text-align: center;
+}
+
+/* Stats Cards */
+.freelancer-stats-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Tighter gap */
+    margin-bottom: 20px; /* Smaller margin */
+}
+
+.freelancer-stat-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px; /* Much smaller padding */
+    border-radius: 6px; /* Smaller radius */
+    border: 1px solid rgba(2, 140, 140, 0.3);
+    transition: transform 0.2s; /* Faster transition */
+}
+
+.freelancer-stat-card:hover {
+    transform: translateY(-2px); /* Less lift */
+}
+
+.freelancer-stat-card div {
+    margin-left: 10px;
+}
+
+.freelancer-stat-card h3 {
+    margin: 0;
+    color: #ecf0f1;
+    font-size: 0.9rem; /* Smaller font */
+}
+
+.freelancer-stat-number {
+    margin: 2px 0 0;
+    font-size: 1.2rem; /* Smaller number */
+    font-weight: 700;
+    color: rgb(2, 140, 140);
+}
+
+/* Recent Activity Timeline */
+.freelancer-activity {
+    margin-bottom: 20px; /* Smaller margin */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px;
+    border: 1px solid rgba(2, 140, 140, 0.2);
+}
+
+.freelancer-activity h2 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 1.1rem; /* Smaller font */
+}
+
+.freelancer-timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Smaller margin */
+    position: relative;
+}
+
+.freelancer-timeline-dot {
+    width: 8px; /* Smaller dot */
+    height: 8px;
+    background: rgb(2, 140, 140);
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+.freelancer-timeline-content small {
+    color: #bdc3c7;
+    font-size: 0.8rem; /* Smaller font */
+}
+
+.freelancer-timeline-content p {
+    margin: 2px 0 0;
+    color: #ecf0f1;
+    font-size: 0.9rem; /* Smaller font */
+}
+
+/* Job Recommendations */
+.freelancer-recommendations {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px;
+    border: 1px solid rgba(2, 140, 140, 0.2);
+}
+
+.freelancer-recommendations h2 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1.1rem; /* Smaller font */
+}
+
+.freelancer-recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Smaller min width */
+    gap: 10px; /* Tighter gap */
+}
+
+.freelancer-recommendation-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px; /* Smaller padding */
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.2s; /* Faster transition */
+    border: 1px solid rgba(2, 140, 140, 0.3);
+}
+
+.freelancer-recommendation-card:hover {
+    transform: translateY(-2px); /* Less lift */
+}
+
+.freelancer-recommendation-card h4 {
+    margin: 5px 0;
+    color: #ecf0f1;
+    font-size: 1rem; /* Smaller font */
+}
+
+.freelancer-recommendation-card p {
+    color: #bdc3c7;
+    margin: 2px 0;
+    font-size: 0.85rem; /* Smaller font */
+}
+
+.freelancer-apply-btn {
+    background: rgb(2, 140, 140);
+    color: #fff;
+    border: none;
+    padding: 6px 12px; /* Smaller padding */
+    border-radius: 3px; /* Smaller radius */
+    cursor: pointer;
+    transition: background 0.2s; /* Faster transition */
+    margin-top: 5px;
+    font-size: 0.85rem; /* Smaller font */
+}
+
+.freelancer-apply-btn:hover {
+    background: #006666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .freelancer-stats-cards {
+        gap: 8px;
+    }
+
+    .freelancer-recommendations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .freelancer-stats-title {
+        font-size: 1.8rem;
+    }
+}

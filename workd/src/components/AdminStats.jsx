@@ -13,7 +13,7 @@ const AdminStats = () => {
 
   return (
     <section className="admin-stats-section">
-      <h1 className="admin-stats-title">WOD Admin Dashboard</h1>
+      <h1 className="admin-stats-title">Welcome, Admin</h1>
       <div className="admin-stats-grid">
         <div className="admin-stats-card">
           <FaUsers size={40} color="rgb(2, 140, 140)" />
