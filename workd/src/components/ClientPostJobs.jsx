@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FaBriefcase, FaDollarSign, FaCalendarAlt, FaFileAlt } from 'react-icons/fa';
+import { FaBriefcase, FaDollarSign, FaCalendarAlt, FaFileAlt, FaRupeeSign } from 'react-icons/fa';
+import api from "../services/api";
 import './ClientPostJobs.css';
 
 const JobPosting = () => {
@@ -37,13 +38,29 @@ const JobPosting = () => {
     return true;
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    // Backend call here
-    alert(`Job posted: ${JSON.stringify(form)}`);
-    setForm({ title: '', description: '', budget: '', deadline: '' });
+
+    try {
+      const res = await api.post("/users/post_job.php", form);
+
+      console.log("API RESPONSE:", res.data);
+
+      if (res.data.success === true) {
+        alert(res.data.message);
+        setForm({ title: "", description: "", budget: "", deadline: "" });
+      } else {
+        alert(res.data.message || "Something went wrong");
+      }
+
+    } catch (error) {
+      console.error("POST JOB ERROR:", error);
+      alert("Server error");
+    }
   };
+
+
 
   return (
     <section className="job-post-section">
@@ -71,10 +88,10 @@ const JobPosting = () => {
           />
         </div>
         <div className="job-post-group">
-          <FaDollarSign className="job-post-icon" />
+          <FaRupeeSign className="job-post-icon" />
           <input
             type="number"
-            placeholder="Budget (USD)"
+            placeholder="Budget (Rupees)"
             value={form.budget}
             onChange={(e) => setForm({ ...form, budget: e.target.value })}
             required

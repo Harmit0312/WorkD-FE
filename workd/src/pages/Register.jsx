@@ -52,35 +52,44 @@ const Register = () => {
   };
 
   const submit = async (e) => {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     if (!validate()) return;
 
     try {
       const res = await api.post(
         "/auth/register.php",
-        JSON.stringify(form),
+        form, // axios auto JSON.stringify
         {
           headers: {
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
 
+      console.log("REGISTER RESPONSE:", res.data);
 
-      setSuccess("Registration successful! Please login.");
-      setError("");
-      alert(success);
+      if (res.data.success) {
+        // ✅ use backend message directly
+        setSuccess(res.data.message);
+        setError("");
 
-      // redirect to login after short delay
-      setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+        alert(res.data.message);
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
+      } else {
+        setError(res.data.message || "Registration failed");
+        setSuccess("");
+      }
 
     } catch (err) {
-      setError(err.response?.data?.error || "Registration failed");
+      console.error("REGISTER ERROR:", err);
+      setError(err.response?.data?.message || "Registration failed");
       setSuccess("");
     }
   };
+
 
   return (
     <div className="signup-container">
