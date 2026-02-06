@@ -1,0 +1,121 @@
+/* Keyframes for Animations */
+@keyframes slideUp-job-post {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Section */
+.job-post-section {
+    padding: 40px 20px;
+    animation: slideUp-job-post 1s ease-out;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent overflow */
+}
+
+.job-post-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 150;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 10px rgba(42, 27, 61, 0.5);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Form */
+.job-post-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%; /* Ensure it doesn't exceed */
+}
+
+.job-post-error {
+    color: #e74c3c;
+    margin-bottom: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.job-post-group {
+    position: relative;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.job-post-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(2, 140, 140);
+    z-index: 1;
+}
+
+.job-post-group input,
+.job-post-group textarea {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ecf0f1;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+    max-width: 100%; /* Prevent overflow */
+}
+
+.job-post-group input:focus,
+.job-post-group textarea:focus {
+    border-color: rgb(2, 140, 140);
+    outline: none;
+}
+
+.job-post-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.job-post-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, rgb(2, 140, 140), #00b894);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.job-post-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .job-post-section {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+
+    .job-post-form {
+        padding: 20px;
+    }
+}
