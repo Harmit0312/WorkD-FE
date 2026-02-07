@@ -3,24 +3,20 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaLock, FaBriefcase, FaTools } from 'react-icons/fa'; // Added FaBriefcase and FaTools for icons
 import './Register.css';
 import logo from '../assets/WOD-Logo.png';
 
 const Register = () => {
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Handle signup logic here
-  //   alert('Signup submitted!');
-  // };
-
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
-    role: ""
+    role: "",
+    experience: "",
+    skills: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -47,6 +43,22 @@ const Register = () => {
       return false;
     }
 
+    // Additional validation for freelancers
+    if (form.role === 'freelancer') {
+      if (!form.experience || !form.skills) {
+        setError("Experience and Skills are required for freelancers");
+        return false;
+      }
+      if (form.experience.length < 2) {
+        setError("Experience must be at least 2 characters");
+        return false;
+      }
+      if (form.skills.length < 2) {
+        setError("Skills must be at least 2 characters");
+        return false;
+      }
+    }
+
     setError("");
     return true;
   };
@@ -58,7 +70,7 @@ const Register = () => {
     try {
       const res = await api.post(
         "/auth/register.php",
-        form, // axios auto JSON.stringify
+        form, // Includes experience and skills
         {
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +81,6 @@ const Register = () => {
       console.log("REGISTER RESPONSE:", res.data);
 
       if (res.data.success) {
-        // ✅ use backend message directly
         setSuccess(res.data.message);
         setError("");
 
@@ -89,7 +100,6 @@ const Register = () => {
       setSuccess("");
     }
   };
-
 
   return (
     <div className="signup-container">
@@ -131,6 +141,18 @@ const Register = () => {
                 <option value="freelancer">Freelancer</option>
               </select>
             </div>
+            {form.role === 'freelancer' && (
+              <>
+                <div className="signup-input-group">
+                  <FaBriefcase className="signup-icon" />
+                  <input type="text" placeholder="Experience (e.g., 2 years in web development)" value={form.experience} onChange={e => setForm({ ...form, experience: e.target.value })} required />
+                </div>
+                <div className="signup-input-group">
+                  <FaTools className="signup-icon" />
+                  <input type="text" placeholder="Skills (e.g., React, Node.js, Design)" value={form.skills} onChange={e => setForm({ ...form, skills: e.target.value })} required />
+                </div>
+              </>
+            )}
             <button type="submit" className="signup-primary-button">Sign Up</button>
           </form>
           <p className="signup-link-text">Already have an account? <Link to="/login" className="signup-link">Login here</Link></p>
