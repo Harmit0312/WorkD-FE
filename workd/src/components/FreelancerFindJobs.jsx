@@ -38,12 +38,12 @@ const JobFinding = () => {
   };
 
   // Filter jobs based on search and budget
-  const filteredJobs = jobs.filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesBudget = budgetFilter === '' || job.budgetValue === budgetFilter;
-    return matchesSearch && matchesBudget;
-  });
+  // const filteredJobs = jobs.filter(job => {
+  //   const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //     job.description.toLowerCase().includes(searchTerm.toLowerCase());
+  //   const matchesBudget = budgetFilter === '' || job.budgetValue === budgetFilter;
+  //   return matchesSearch && matchesBudget;
+  // });
 
   const toggleDetails = (jobId) => {
     setExpandedJobs(prev => {
@@ -120,10 +120,11 @@ const JobFinding = () => {
 
       {/* Jobs List */}
       <div className="job-list">
-        {filteredJobs.map(job => (
+        {jobs.map(job => (
           <div key={job.id} className="job-card">
             <h3 className="job-title">{job.title}</h3>
             <p className="job-description">{job.description}</p>
+            <p className="job-client">Posted by: {job.client_name}</p> {/* New client name display */}
             {expandedJobs.has(job.id) && (
               <>
                 <p className="job-full-details">{job.fullDetails}</p>

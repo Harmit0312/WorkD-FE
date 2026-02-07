@@ -113,6 +113,13 @@
     box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
 }
 
+.job-client {
+    color: #bdc3c7;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
 .job-title {
     font-size: 1.5rem;
     font-weight: 600;

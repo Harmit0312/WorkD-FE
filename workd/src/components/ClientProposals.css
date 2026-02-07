@@ -1,0 +1,178 @@
+/* Proposal Management Styles - Independent with 'proposal-' prefix */
+@keyframes proposal-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.proposal-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: proposal-fadeIn 1s ease-out;
+}
+
+/* Jobs List */
+.proposal-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.proposal-job-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: proposal-fadeIn 1.5s ease-out;
+}
+
+.proposal-job-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.proposal-job-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.proposal-job-description {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.proposal-job-budget {
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    margin-bottom: 20px;
+}
+
+.proposal-freelancers-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.proposal-freelancers-list {
+    display: grid;
+    gap: 20px;
+}
+
+.proposal-freelancer-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.proposal-freelancer-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.proposal-icon {
+    color: rgb(2, 140, 140);
+}
+
+.proposal-freelancer-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.proposal-freelancer-details {
+    color: #bdc3c7;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.proposal-message {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    color: #ecf0f1;
+    margin-bottom: 15px;
+}
+
+.proposal-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.proposal-view-button,
+.proposal-assign-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.proposal-view-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.proposal-view-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+.proposal-assign-button {
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.proposal-assign-button:hover {
+    transform: translateY(-3px);
+}
+
+.proposal-no-proposals {
+    color: #bdc3c7;
+    font-style: italic;
+}
+
+.proposal-loading, .proposal-error {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .proposal-list {
+        padding: 0 10px;
+    }
+
+    .proposal-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

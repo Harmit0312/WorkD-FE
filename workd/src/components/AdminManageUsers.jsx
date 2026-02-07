@@ -38,7 +38,7 @@ const AdminUserManagement = () => {
       });
 
       setUsers(res.data.users || []);
-      setTotalPages(res.data.total_Pages || 1);
+      setTotalPages(res.data.total_pages || 1);
     } catch (err) {
       console.error("Failed to fetch users", err);
     }

@@ -1,0 +1,218 @@
+/* Freelancer Proposals Styles - Independent with 'freelancer-proposal-' prefix */
+@keyframes freelancer-proposal-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.freelancer-proposal-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: freelancer-proposal-fadeIn 1s ease-out;
+}
+
+.freelancer-proposal-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+/* Proposals List */
+.freelancer-proposal-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.freelancer-proposal-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: freelancer-proposal-fadeIn 1.5s ease-out;
+}
+
+.freelancer-proposal-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.freelancer-proposal-job-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.freelancer-proposal-status {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.freelancer-proposal-status-pending {
+    background: #f39c12;
+    color: #fff;
+}
+
+.freelancer-proposal-status-accepted {
+    background: #27ae60;
+    color: #fff;
+}
+
+.freelancer-proposal-status-rejected {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.freelancer-proposal-message {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.freelancer-proposal-edit-section {
+    margin-bottom: 20px;
+}
+
+.freelancer-proposal-edit-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ecf0f1;
+    resize: vertical;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.freelancer-proposal-edit-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.freelancer-proposal-edit-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.freelancer-proposal-save-button,
+.freelancer-proposal-cancel-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.freelancer-proposal-save-button {
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+}
+
+.freelancer-proposal-save-button:hover {
+    transform: translateY(-2px);
+}
+
+.freelancer-proposal-cancel-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.freelancer-proposal-cancel-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+.freelancer-proposal-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.freelancer-proposal-edit-button,
+.freelancer-proposal-withdraw-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.freelancer-proposal-edit-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.freelancer-proposal-edit-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+.freelancer-proposal-withdraw-button {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.freelancer-proposal-withdraw-button:hover {
+    transform: translateY(-3px);
+}
+
+.freelancer-proposal-no-proposals {
+    text-align: center;
+    color: #bdc3c7;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+.freelancer-proposal-loading, .freelancer-proposal-error {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .freelancer-proposal-list {
+        grid-template-columns: 1fr;
+    }
+
+    .freelancer-proposal-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
