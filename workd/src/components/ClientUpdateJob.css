@@ -1,0 +1,194 @@
+/* Client Job Update Styles - Independent with 'client-job-' prefix */
+@keyframes client-job-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.client-job-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: client-job-fadeIn 1s ease-out;
+}
+
+.client-job-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+/* Jobs List */
+.client-job-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.client-job-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: client-job-fadeIn 1.5s ease-out;
+}
+
+.client-job-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.client-job-job-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.client-job-description {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.client-job-budget {
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    margin-bottom: 20px;
+}
+
+.client-job-budget-icon {
+    margin-right: 5px;
+}
+
+.client-job-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.client-job-edit-input {
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ecf0f1;
+    outline: none;
+    transition: background 0.3s;
+    resize: vertical;
+}
+
+.client-job-edit-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.client-job-edit-input::placeholder {
+    color: #bdc3c7;
+}
+
+.client-job-edit-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.client-job-save-button,
+.client-job-cancel-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.client-job-save-button {
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+}
+
+.client-job-save-button:hover {
+    transform: translateY(-2px);
+}
+
+.client-job-cancel-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.client-job-cancel-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+.client-job-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.client-job-update-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.client-job-update-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+.client-job-no-jobs {
+    text-align: center;
+    color: #bdc3c7;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+.client-job-loading, .client-job-error {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .client-job-list {
+        grid-template-columns: 1fr;
+    }
+
+    .client-job-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
