@@ -205,6 +205,25 @@
     font-size: 1.2rem;
 }
 
+.freelancer-proposal-job-description {
+    color: #bdc3c7;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.freelancer-proposal-client {
+    color: #bdc3c7;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-style: italic;
+}
+
+.freelancer-proposal-icon {
+    color: rgb(2, 140, 140);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .freelancer-proposal-list {

@@ -1,0 +1,183 @@
+/* Active Jobs Styles - Independent with 'active-job-' prefix */
+@keyframes active-job-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.active-job-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: active-job-fadeIn 1s ease-out;
+}
+
+.active-job-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+/* Jobs List */
+.active-job-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.active-job-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: active-job-fadeIn 1.5s ease-out;
+}
+
+.active-job-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.active-job-job-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.active-job-description {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.active-job-budget {
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    margin-bottom: 10px;
+}
+
+.active-job-budget-icon {
+    margin-right: 5px;
+}
+
+.active-job-status {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.active-job-status-pending {
+    background: #f39c12;
+    color: #fff;
+}
+
+.active-job-status-assigned {
+    background: #3498db;
+    color: #fff;
+}
+
+.active-job-status-completed {
+    background: #27ae60;
+    color: #fff;
+}
+
+.active-job-status-paid {
+    background: #9b59b6;
+    color: #fff;
+}
+
+.active-job-freelancer {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.active-job-icon {
+    color: rgb(2, 140, 140);
+}
+
+.active-job-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.active-job-pay-button,
+.active-job-delete-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.active-job-pay-button {
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+}
+
+.active-job-pay-button:hover {
+    transform: translateY(-3px);
+}
+
+.active-job-delete-button {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.active-job-delete-button:hover {
+    transform: translateY(-3px);
+}
+
+.active-job-no-jobs {
+    text-align: center;
+    color: #bdc3c7;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+.active-job-loading, .active-job-error {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .active-job-list {
+        grid-template-columns: 1fr;
+    }
+
+    .active-job-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
