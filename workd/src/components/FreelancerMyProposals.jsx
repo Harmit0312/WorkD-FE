@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from "../services/api";
-import { FaEdit, FaTrash, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaCheck, FaTimes, FaUser } from 'react-icons/fa'; // Added FaUser for client icon
 import './FreelancerMyProposals.css'; // Import the separated CSS file
 
 const FreelancerProposals = () => {
@@ -105,6 +105,10 @@ const FreelancerProposals = () => {
         {proposals.map(proposal => (
           <div key={proposal.id} className="freelancer-proposal-card">
             <h3 className="freelancer-proposal-job-title">{proposal.job_title}</h3>
+            <p className="freelancer-proposal-job-description">{proposal.job_description}</p>
+            <p className="freelancer-proposal-client">
+              <FaUser className="freelancer-proposal-icon" /> Posted by: {proposal.client_name}
+            </p>
             <p className={`freelancer-proposal-status ${getStatusClass(proposal.status)}`}>{proposal.status}</p>
             {editingId === proposal.id ? (
               <div className="freelancer-proposal-edit-section">

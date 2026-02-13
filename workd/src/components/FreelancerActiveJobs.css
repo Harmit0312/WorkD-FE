@@ -1,0 +1,189 @@
+/* Freelancer Active Jobs Styles - Independent with 'freelancer-active-job-' prefix */
+@keyframes freelancer-active-job-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.freelancer-active-job-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: freelancer-active-job-fadeIn 1s ease-out;
+}
+
+.freelancer-active-job-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+/* Jobs List */
+.freelancer-active-job-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.freelancer-active-job-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: freelancer-active-job-fadeIn 1.5s ease-out;
+}
+
+.freelancer-active-job-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.freelancer-active-job-job-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.freelancer-active-job-description {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.freelancer-active-job-budget {
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    margin-bottom: 10px;
+}
+
+.freelancer-active-job-budget-icon {
+    margin-right: 5px;
+}
+
+.freelancer-active-job-status {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.freelancer-active-job-status-pending {
+    background: #f39c12;
+    color: #fff;
+}
+
+.freelancer-active-job-status-assigned {
+    background: #3498db;
+    color: #fff;
+}
+
+.freelancer-active-job-status-completed {
+    background: #27ae60;
+    color: #fff;
+}
+
+.freelancer-active-job-status-paid {
+    background: #9b59b6;
+    color: #fff;
+}
+
+.freelancer-active-job-client {
+    color: #bdc3c7;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.freelancer-active-job-icon {
+    color: rgb(2, 140, 140);
+}
+
+.freelancer-active-job-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.freelancer-active-job-delete-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.freelancer-active-job-delete-button:hover {
+    transform: translateY(-3px);
+}
+
+.freelancer-active-job-no-jobs {
+    text-align: center;
+    color: #bdc3c7;
+    font-style: italic;
+    grid-column: 1 / -1;
+}
+
+.freelancer-active-job-loading, .freelancer-active-job-error {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+.freelancer-active-job-complete-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.freelancer-active-job-complete-button:hover {
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .freelancer-active-job-list {
+        grid-template-columns: 1fr;
+    }
+
+    .freelancer-active-job-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
