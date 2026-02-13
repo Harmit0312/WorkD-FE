@@ -233,8 +233,12 @@ const AdminUserManagement = () => {
             <h2>{selectedUser.name} – Activity</h2>
             <p>Email: {selectedUser.email}</p>
             <p>Role: {selectedUser.role}</p>
-            <p>Jobs Posted: {selectedUser.jobs_posted}</p>
-            <p>Proposals Sent: {selectedUser.proposals_sent}</p>
+            {selectedUser.role !== 'freelancer' && (
+              <p>Jobs Posted: {selectedUser.jobs_posted}</p>
+            )}
+            {selectedUser.role !== 'client' && (
+              <p>Proposals Sent: {selectedUser.proposals_sent}</p>
+            )}
             <p>Completed Orders: {selectedUser.completed_orders}</p>
 
             <button onClick={() => setShowModal(false)}>Close</button>

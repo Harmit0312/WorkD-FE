@@ -170,6 +170,18 @@
     font-size: 1.2rem;
 }
 
+.active-job-deadline {
+    color: #bdc3c7;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.active-job-status-open {
+    background: #f39c12;
+    color: #fff;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .active-job-list {

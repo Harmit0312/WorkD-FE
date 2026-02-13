@@ -98,6 +98,7 @@ const FreelancerActiveJobs = () => {
             <p className="freelancer-active-job-client">
               <FaUser className="freelancer-active-job-icon" /> Client: {job.client_name}
             </p>
+            <p className="freelancer-active-job-deadline">Deadline: {job.deadline}</p> {/* New deadline display */}
             <div className="freelancer-active-job-buttons">
               {job.status.toLowerCase() === 'assigned' && (
                 <button
