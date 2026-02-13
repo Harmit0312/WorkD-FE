@@ -176,6 +176,13 @@
     transform: translateY(-3px);
 }
 
+.freelancer-active-job-deadline {
+    color: #bdc3c7;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .freelancer-active-job-list {

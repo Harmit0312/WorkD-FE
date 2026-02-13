@@ -224,6 +224,13 @@
     color: rgb(2, 140, 140);
 }
 
+.freelancer-proposal-deadline {
+    color: #bdc3c7;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .freelancer-proposal-list {

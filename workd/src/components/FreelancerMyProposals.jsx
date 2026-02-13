@@ -109,6 +109,7 @@ const FreelancerProposals = () => {
             <p className="freelancer-proposal-client">
               <FaUser className="freelancer-proposal-icon" /> Posted by: {proposal.client_name}
             </p>
+            <p className="freelancer-proposal-deadline">Deadline: {proposal.deadline}</p> {/* New deadline display */}
             <p className={`freelancer-proposal-status ${getStatusClass(proposal.status)}`}>{proposal.status}</p>
             {editingId === proposal.id ? (
               <div className="freelancer-proposal-edit-section">

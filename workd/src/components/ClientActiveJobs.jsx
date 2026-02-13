@@ -68,8 +68,28 @@ const ClientActiveJobs = () => {
     }
   };
 
+  const deleteOpenJob = async (jobId) => {
+    if (!window.confirm("Delete this open job? This action cannot be undone.")) return;
+
+    try {
+      const res = await api.post("/users/delete_open_job.php", {
+        job_id: jobId,
+      });
+
+      alert(res.data.message || "Open job deleted successfully");
+      fetchJobs(); // Refresh the list
+    } catch (err) {
+      alert(
+        err.response?.data?.message ||
+        "Something went wrong while deleting the open job"
+      );
+    }
+  };
+
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
+      case 'open':
+        return 'active-job-status-open';
       case 'in_progress':
         return 'active-job-status-in-progress';
       case 'paid':
@@ -92,6 +112,7 @@ const ClientActiveJobs = () => {
             <h3 className="active-job-job-title">{job.title}</h3>
             <p className="active-job-description">{job.description}</p>
             <p className="active-job-budget"><FaRupeeSign className="active-job-budget-icon" />{job.budget}</p>
+            <p className="active-job-deadline">Deadline: {job.deadline}</p>
             <p className={`active-job-status ${getStatusClass(job.status)}`}>{job.status}</p>
             {job.assigned_freelancer_name && (
               <p className="active-job-freelancer">
@@ -99,6 +120,14 @@ const ClientActiveJobs = () => {
               </p>
             )}
             <div className="active-job-buttons">
+              {job.status.toLowerCase() === 'open' && (
+                <button
+                  className="active-job-delete-button"
+                  onClick={() => deleteOpenJob(job.id)}
+                >
+                  <FaTrash /> Delete
+                </button>
+              )}
               {job.status.toLowerCase() === 'completed' && (
                 <button
                   className="active-job-pay-button"

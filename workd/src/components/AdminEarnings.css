@@ -1,0 +1,256 @@
+/* Admin Earnings Dashboard Styles - Independent with 'admin-earnings-' prefix */
+@keyframes admin-earnings-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.admin-earnings-section {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: admin-earnings-fadeIn 1s ease-out;
+}
+
+.admin-earnings-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+/* Summary */
+.admin-earnings-summary {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.admin-earnings-summary-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 200px;
+}
+
+.admin-earnings-summary-card h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.admin-earnings-summary-card p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Controls */
+.admin-earnings-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.admin-earnings-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px;
+}
+
+.admin-earnings-search input {
+    border: none;
+    background: transparent;
+    color: #ecf0f1;
+    outline: none;
+    flex: 1;
+}
+
+.admin-earnings-search input::placeholder {
+    color: #bdc3c7;
+}
+
+/* Earnings Cards */
+.admin-earnings-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admin-earnings-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: admin-earnings-fadeIn 1.5s ease-out;
+}
+
+.admin-earnings-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+}
+
+.admin-earnings-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-earnings-card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.admin-earnings-status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #27ae60;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.admin-earnings-card-body {
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+.admin-earnings-client,
+.admin-earnings-freelancer,
+.admin-earnings-total-price,
+.admin-earnings-commission,
+.admin-earnings-date {
+    margin-bottom: 10px;
+}
+
+.admin-earnings-total-price,
+.admin-earnings-commission {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.admin-earnings-commission {
+    color: rgb(2, 140, 140);
+}
+
+/* Pagination */
+.admin-earnings-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.admin-earnings-pagination button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-earnings-pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.admin-earnings-pagination button:hover:not(:disabled) {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+.admin-earnings-pagination span {
+    color: #ecf0f1;
+    font-weight: 600;
+}
+
+/* Recommendations */
+.admin-earnings-recommendations {
+    max-width: 800px;
+    margin: 40px auto 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.admin-earnings-recommendations h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.admin-earnings-recommendations ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-earnings-recommendations li {
+    margin-bottom: 10px;
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+.admin-earnings-recommendations li:before {
+    content: "💡 ";
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-earnings-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-earnings-summary {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Center text */
+.center {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}

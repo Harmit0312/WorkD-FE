@@ -8,7 +8,7 @@ const ClientJobUpdate = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [editingId, setEditingId] = useState(null); // Track which job is being edited
-  const [editForm, setEditForm] = useState({ title: '', description: '', budget: '' }); // Store edit form data
+  const [editForm, setEditForm] = useState({ title: '', description: '', budget: '', deadline: '' }); // Store edit form data, added deadline
 
   const fetchJobs = async () => {
     setLoading(true);
@@ -36,11 +36,16 @@ const ClientJobUpdate = () => {
 
   const startEdit = (job) => {
     setEditingId(job.id);
-    setEditForm({ title: job.title, description: job.description, budget: String(job.budget) });
+    setEditForm({ 
+      title: job.title, 
+      description: job.description, 
+      budget: String(job.budget), 
+      deadline: job.deadline || '' // Added deadline
+    });
   };
 
   const saveEdit = async (jobId) => {
-    if (!editForm.title.trim() || !editForm.description.trim() || !editForm.budget.trim()) {
+    if (!editForm.title.trim() || !editForm.description.trim() || !editForm.budget.trim() || !editForm.deadline.trim()) {
       alert("All fields are required.");
       return;
     }
@@ -51,6 +56,7 @@ const ClientJobUpdate = () => {
         title: editForm.title,
         description: editForm.description,
         budget: editForm.budget,
+        deadline: editForm.deadline, // Added deadline
       });
 
       alert(res.data.message || "Job updated successfully");
@@ -66,7 +72,7 @@ const ClientJobUpdate = () => {
 
   const cancelEdit = () => {
     setEditingId(null);
-    setEditForm({ title: '', description: '', budget: '' });
+    setEditForm({ title: '', description: '', budget: '', deadline: '' }); // Added deadline
   };
 
   return (
@@ -100,6 +106,13 @@ const ClientJobUpdate = () => {
                   value={editForm.budget}
                   onChange={(e) => setEditForm({ ...editForm, budget: e.target.value })}
                 />
+                <input
+                  type="date"
+                  className="client-job-edit-input"
+                  placeholder="Deadline"
+                  value={editForm.deadline}
+                  onChange={(e) => setEditForm({ ...editForm, deadline: e.target.value })}
+                />
                 <div className="client-job-edit-buttons">
                   <button
                     className="client-job-save-button"
@@ -120,6 +133,7 @@ const ClientJobUpdate = () => {
                 <h3 className="client-job-job-title">{job.title}</h3>
                 <p className="client-job-description">{job.description}</p>
                 <p className="client-job-budget"><FaRupeeSign className="client-job-budget-icon" />{job.budget}</p>
+                <p className="client-job-deadline">Deadline: {job.deadline}</p>
                 <div className="client-job-buttons">
                   <button
                     className="client-job-update-button"

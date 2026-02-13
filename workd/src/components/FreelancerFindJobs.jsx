@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from "../services/api";
-import { FaRupeeSign, FaDollarSign } from "react-icons/fa";
+import { FaRupeeSign } from "react-icons/fa";
 import './FreelancerFindJobs.css'; // Import the separated CSS file
 
 const JobFinding = () => {
@@ -37,13 +37,9 @@ const JobFinding = () => {
     setLoading(false);
   };
 
-  // Filter jobs based on search and budget
-  // const filteredJobs = jobs.filter(job => {
-  //   const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     job.description.toLowerCase().includes(searchTerm.toLowerCase());
-  //   const matchesBudget = budgetFilter === '' || job.budgetValue === budgetFilter;
-  //   return matchesSearch && matchesBudget;
-  // });
+  useEffect(() => {
+    fetchJobs();
+  }, [searchTerm, budgetFilter]);
 
   const toggleDetails = (jobId) => {
     setExpandedJobs(prev => {
@@ -56,10 +52,6 @@ const JobFinding = () => {
       return newSet;
     });
   };
-
-  useEffect(() => {
-    fetchJobs();
-  }, [searchTerm, budgetFilter]);
 
   const applyJob = async (jobId) => {
     if (!window.confirm("Apply for this job?")) return;
@@ -114,55 +106,55 @@ const JobFinding = () => {
         </div>
       </div>
 
-      {/* Loading and Error States */}
-      {loading && <p className="job-loading">Loading jobs...</p>}
-      {error && <p className="job-error">{error}</p>}
-
       {/* Jobs List */}
       <div className="job-list">
-        {jobs.map(job => (
-          <div key={job.id} className="job-card">
-            <h3 className="job-title">{job.title}</h3>
-            <p className="job-description">{job.description}</p>
-            <p className="job-client">Posted by: {job.client_name}</p> {/* New client name display */}
-            {expandedJobs.has(job.id) && (
-              <>
-                <p className="job-full-details">{job.fullDetails}</p>
-                {/* Message Section */}
-                <div className="job-message-section">
-                  <textarea
-                    className="job-message-input"
-                    placeholder="Type your message here..."
-                    value={messages[job.id] || ""}
-                    onChange={(e) => handleMessageChange(job.id, e.target.value)}
-                    rows="3"
-                  />
-                  {/* <button
-                    className="job-send-message-button"
-                    onClick={() => sendMessage(job.id)}
-                  >
-                    Send Message
-                  </button> */}
-                </div>
-              </>
-            )}
-            <p className="job-budget"><FaRupeeSign className="job-budget-icon" />{job.budget}</p>
-            <div className="job-buttons">
-              <button
-                className="job-details-button"
-                onClick={() => toggleDetails(job.id)}
-              >
-                {expandedJobs.has(job.id) ? 'Hide Details' : 'Show Details'}
-              </button>
-              <button
-                className="job-apply-button"
-                onClick={() => applyJob(job.id)}
-              >
-                Apply
-              </button>
+        {loading ? (
+          <p className="job-loading">Loading jobs...</p>
+        ) : error ? (
+          <p className="job-error">{error}</p>
+        ) : jobs.length === 0 ? (
+          <p className="job-no-jobs">No jobs are currently available.</p>
+        ) : (
+          jobs.map(job => (
+            <div key={job.id} className="job-card">
+              <h3 className="job-title">{job.title}</h3>
+              <p className="job-description">{job.description}</p>
+              <p className="job-client">Posted by: {job.client_name}</p>
+              <p className="job-deadline">Deadline: {job.deadline}</p>
+              
+              {expandedJobs.has(job.id) && (
+                <>
+                  <p className="job-full-details">{job.fullDetails}</p>
+                  <div className="job-message-section">
+                    <textarea
+                      className="job-message-input"
+                      placeholder="Type your message here..."
+                      value={messages[job.id] || ""}
+                      onChange={(e) => handleMessageChange(job.id, e.target.value)}
+                      rows="3"
+                    />
+                  </div>
+                </>
+              )}
+
+              <p className="job-budget"><FaRupeeSign className="job-budget-icon" />{job.budget}</p>
+              <div className="job-buttons">
+                <button
+                  className="job-details-button"
+                  onClick={() => toggleDetails(job.id)}
+                >
+                  {expandedJobs.has(job.id) ? 'Hide Details' : 'Show Details'}
+                </button>
+                <button
+                  className="job-apply-button"
+                  onClick={() => applyJob(job.id)}
+                >
+                  Apply
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
