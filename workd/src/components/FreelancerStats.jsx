@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaHandshake, FaCheckCircle, FaRupeeSign, FaDollarSign, FaAward, FaBriefcase, FaStar, FaPaperPlane, FaTimes } from 'react-icons/fa';
+import { FaHandshake, FaCheckCircle, FaRupeeSign, FaAward, FaBriefcase, FaStar, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import api from "../services/api";
 import './FreelancerStats.css';
 
@@ -111,9 +111,9 @@ const FreelancerStats = () => {
               <p className="freelancer-stat-number">{stats.completedProjects}</p>
             </div>
             <div className="freelancer-stat-card">
-              <FaDollarSign size={40} color="rgb(2, 140, 140)" />
+              <FaRupeeSign size={40} color="rgb(2, 140, 140)" />
               <h3>Earnings</h3>
-              <p className="freelancer-stat-number">${stats.earnings.toLocaleString()}</p>
+              <p className="freelancer-stat-number">₹{stats.earnings.toLocaleString()}</p>
             </div>
             {/* <div className="freelancer-stat-card">
               <FaAward size={40} color="rgb(2, 140, 140)" />

@@ -196,6 +196,18 @@
     background: #006666;
 }
 
+.client-stats-loading {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+.client-stats-error {
+    text-align: center;
+    color: #e74c3c;
+    font-size: 1.2rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .client-stat-row {
