@@ -1,0 +1,300 @@
+/* Client Profile Styles - Independent with 'client-profile-' prefix */
+@keyframes client-profile-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.client-profile-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: client-profile-fadeIn 1s ease-out;
+}
+
+.client-profile-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.client-profile-success {
+    color: #27ae60;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.client-profile-loading {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+.client-profile-error {
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Content */
+.client-profile-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+/* Profile Info */
+.client-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.client-profile-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: client-profile-fadeIn 1.5s ease-out;
+}
+
+.client-profile-item-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.client-profile-icon {
+    font-size: 1.5rem;
+    color: rgb(2, 140, 140);
+}
+
+.client-profile-item h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.client-profile-item p {
+    margin: 5px 0 0;
+    color: #bdc3c7;
+    font-size: 0.9rem;
+}
+
+.client-profile-edit-button,
+.client-profile-logout-button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.client-profile-edit-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.client-profile-edit-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.client-profile-logout-button {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.client-profile-logout-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Freelancers Worked With */
+.client-profile-freelancers {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: client-profile-fadeIn 1.5s ease-out;
+}
+
+.client-profile-freelancers h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.client-profile-freelancers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.client-profile-freelancer-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.client-profile-freelancer-icon {
+    color: rgb(2, 140, 140);
+}
+
+.client-profile-freelancer-card h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.client-profile-freelancer-card p {
+    margin: 5px 0 0;
+    color: #bdc3c7;
+    font-size: 0.8rem;
+}
+
+/* Modals */
+.client-profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.client-profile-modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    color: #ecf0f1;
+}
+
+.client-profile-modal-content h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.client-profile-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.client-profile-modal input {
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ecf0f1;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.client-profile-modal input::placeholder {
+    color: #bdc3c7;
+}
+
+.client-profile-modal input:focus {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.client-profile-modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.client-profile-save-button,
+.client-profile-cancel-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    flex: 1;
+}
+
+.client-profile-save-button {
+    background-color: rgb(2, 140, 140);
+    color: #fff;
+}
+
+.client-profile-save-button:hover {
+    transform: translateY(-3px);
+}
+
+.client-profile-cancel-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.client-profile-cancel-button:hover {
+    background: #fff;
+    color: #0a1f3a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .client-profile-content {
+        grid-template-columns: 1fr;
+    }
+
+    .client-profile-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .client-profile-modal-content {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .client-profile-modal-buttons {
+        flex-direction: column;
+    }
+}
