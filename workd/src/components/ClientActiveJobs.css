@@ -1,4 +1,4 @@
-/* Active Jobs Styles - Independent with 'active-job-' prefix */
+/* Client Active Jobs Styles - Independent with 'active-job-' prefix */
 @keyframes active-job-fadeIn {
     from {
         opacity: 0;
@@ -30,15 +30,20 @@
     color: #fff;
 }
 
-/* Jobs List */
-.active-job-list {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+.active-job-loading {
+    text-align: center;
+    color: #ecf0f1;
+    font-size: 1.2rem;
 }
 
+.active-job-no-jobs {
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* Jobs List */
 .active-job-card {
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
@@ -47,6 +52,10 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
     animation: active-job-fadeIn 1.5s ease-out;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .active-job-card:hover {
@@ -54,40 +63,31 @@
     box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
 }
 
+.active-job-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .active-job-job-title {
     font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin: 0;
     color: #fff;
 }
 
-.active-job-description {
-    color: #bdc3c7;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.active-job-budget {
-    font-weight: 600;
-    color: rgb(2, 140, 140);
-    margin-bottom: 10px;
-}
-
-.active-job-budget-icon {
-    margin-right: 5px;
-}
-
 .active-job-status {
-    font-weight: 600;
-    padding: 5px 10px;
+    padding: 5px 15px;
     border-radius: 20px;
-    text-align: center;
-    margin-bottom: 15px;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-.active-job-status-pending {
+.active-job-status-open {
     background: #f39c12;
     color: #fff;
 }
@@ -107,26 +107,65 @@
     color: #fff;
 }
 
-.active-job-freelancer {
+.active-job-status-pending {
+    background: #95a5a6;
+    color: #fff;
+}
+
+.active-job-description {
     color: #bdc3c7;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.active-job-budget {
+    font-weight: 600;
+    color: rgb(2, 140, 140);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.active-job-icon {
+.active-job-budget-icon {
+    font-size: 0.9rem;
+}
+
+.active-job-deadline {
+    color: #bdc3c7;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.active-job-deadline-icon {
+    color: #f39c12;
+}
+
+.active-job-freelancer {
+    color: #bdc3c7;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.active-job-freelancer-icon {
     color: rgb(2, 140, 140);
 }
 
 .active-job-buttons {
     display: flex;
-    gap: 15px;
+    gap: 10px;
+    margin-top: 15px;
     flex-wrap: wrap;
 }
 
 .active-job-pay-button,
-.active-job-delete-button {
+.active-job-paid-button {
     padding: 10px 20px;
     font-size: 1rem;
     font-weight: 600;
@@ -146,50 +185,34 @@
 
 .active-job-pay-button:hover {
     transform: translateY(-3px);
+    background-color: #028c8c;
 }
 
-.active-job-delete-button {
-    background: #e74c3c;
+.active-job-paid-button {
+    background-color: #9b59b6;
     color: #fff;
+    cursor: not-allowed;
+    opacity: 0.8;
 }
 
-.active-job-delete-button:hover {
-    transform: translateY(-3px);
-}
-
-.active-job-no-jobs {
-    text-align: center;
-    color: #bdc3c7;
-    font-style: italic;
-    grid-column: 1 / -1;
-}
-
-.active-job-loading, .active-job-error {
-    text-align: center;
-    color: #ecf0f1;
-    font-size: 1.2rem;
-}
-
-.active-job-deadline {
-    color: #bdc3c7;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.active-job-status-open {
-    background: #f39c12;
-    color: #fff;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-    .active-job-list {
-        grid-template-columns: 1fr;
+    .active-job-card {
+        padding: 20px;
+    }
+
+    .active-job-card-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .active-job-buttons {
         flex-direction: column;
-        align-items: stretch;
+    }
+
+    .active-job-pay-button,
+    .active-job-paid-button {
+        width: 100%;
+        justify-content: center;
     }
 }

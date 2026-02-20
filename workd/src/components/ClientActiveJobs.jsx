@@ -1,30 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import api from "../services/api";
-import { FaUser, FaCheck, FaTrash, FaRupeeSign } from 'react-icons/fa';
-import './ClientActiveJobs.css'; // Import the separated CSS file
+import { FaUser, FaCheck, FaRupeeSign, FaCalendarAlt } from "react-icons/fa";
+import "./ClientActiveJobs.css";
 
 const ClientActiveJobs = () => {
   const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const fetchJobs = async () => {
     setLoading(true);
-    setError("");
-
     try {
-      const res = await api.get("/users/get_my_active_jobs.php"); // Assumes endpoint returns client's active jobs with status and assigned freelancer
-
-      if (res.data.status) {
-        setJobs(res.data.jobs || []);
-      } else {
-        setJobs([]);
-      }
-    } catch (err) {
-      console.error(err);
-      setError("Failed to load jobs");
+      const res = await api.get("/users/get_my_active_jobs.php");
+      setJobs(res.data.status ? res.data.jobs : []);
+    } catch {
+      setJobs([]);
     }
-
     setLoading(false);
   };
 
@@ -32,123 +22,101 @@ const ClientActiveJobs = () => {
     fetchJobs();
   }, []);
 
-  const payJob = async (jobId) => {
-    if (!window.confirm("Confirm payment for this job?")) return;
+  const payJob = (job) => {
+    if (!window.confirm("Proceed to payment?")) return;
 
-    try {
-      const res = await api.post("/users/pay_job.php", {
-        job_id: jobId,
-      });
+    const options = {
+      key: "rzp_test_SIIg0FgQq7RMhD",
+      amount: job.budget * 100, // UI ONLY
+      currency: "INR",
+      name: "WorkD",
+      description: `Payment for ${job.title}`,
 
-      alert(res.data.message || "Payment processed successfully");
-      fetchJobs(); // Refresh the list
-    } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Something went wrong while processing payment"
-      );
-    }
-  };
+      handler: async () => {
+        try {
+          const res = await api.post("/users/pay_job.php", {
+            job_id: job.id
+          });
+          alert(res.data.message);
+          fetchJobs();
+        } catch {
+          alert("Payment failed");
+        }
+      }
+    };
 
-  const deleteJob = async (jobId) => {
-    if (!window.confirm("Delete this job? This action cannot be undone.")) return;
-
-    try {
-      const res = await api.post("/users/delete_paid_job.php", {
-        job_id: jobId,
-      });
-
-      alert(res.data.message || "Job deleted successfully");
-      fetchJobs(); // Refresh the list
-    } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Something went wrong while deleting the job"
-      );
-    }
-  };
-
-  const deleteOpenJob = async (jobId) => {
-    if (!window.confirm("Delete this open job? This action cannot be undone.")) return;
-
-    try {
-      const res = await api.post("/users/delete_open_job.php", {
-        job_id: jobId,
-      });
-
-      alert(res.data.message || "Open job deleted successfully");
-      fetchJobs(); // Refresh the list
-    } catch (err) {
-      alert(
-        err.response?.data?.message ||
-        "Something went wrong while deleting the open job"
-      );
-    }
+    new window.Razorpay(options).open();
   };
 
   const getStatusClass = (status) => {
     switch (status.toLowerCase()) {
       case 'open':
         return 'active-job-status-open';
-      case 'in_progress':
-        return 'active-job-status-in-progress';
-      case 'paid':
-        return 'active-job-status-paid';
+      case 'assigned':
+        return 'active-job-status-assigned';
       case 'completed':
         return 'active-job-status-completed';
+      case 'paid':
+        return 'active-job-status-paid';
       default:
         return 'active-job-status-pending';
     }
   };
 
+  if (loading) return <p className="active-job-loading">Loading jobs...</p>;
+
   return (
     <div className="active-job-container">
       <h2 className="active-job-title">My Active Jobs</h2>
-      {loading && <p className="active-job-loading">Loading jobs...</p>}
-      {error && <p className="active-job-error">{error}</p>}
-      <div className="active-job-list">
-        {jobs.map(job => (
-          <div key={job.id} className="active-job-card">
+
+      {jobs.length === 0 && <p className="active-job-no-jobs">No jobs found.</p>}
+
+      {jobs.map(job => (
+        <div key={job.id} className="active-job-card">
+          <div className="active-job-card-header">
             <h3 className="active-job-job-title">{job.title}</h3>
-            <p className="active-job-description">{job.description}</p>
-            <p className="active-job-budget"><FaRupeeSign className="active-job-budget-icon" />{job.budget}</p>
-            <p className="active-job-deadline">Deadline: {job.deadline}</p>
-            <p className={`active-job-status ${getStatusClass(job.status)}`}>{job.status}</p>
-            {job.assigned_freelancer_name && (
-              <p className="active-job-freelancer">
-                <FaUser className="active-job-icon" /> Assigned to: {job.assigned_freelancer_name}
-              </p>
-            )}
-            <div className="active-job-buttons">
-              {job.status.toLowerCase() === 'open' && (
-                <button
-                  className="active-job-delete-button"
-                  onClick={() => deleteOpenJob(job.id)}
-                >
-                  <FaTrash /> Delete
-                </button>
-              )}
-              {job.status.toLowerCase() === 'completed' && (
-                <button
-                  className="active-job-pay-button"
-                  onClick={() => payJob(job.id)}
-                >
-                  <FaCheck /> Pay
-                </button>
-              )}
-              {job.status.toLowerCase() === 'paid' && (
-                <button
-                  className="active-job-delete-button"
-                  onClick={() => deleteJob(job.id)}
-                >
-                  <FaTrash /> Delete
-                </button>
-              )}
-            </div>
+            <span className={`active-job-status ${getStatusClass(job.status)}`}>
+              {job.status}
+            </span>
           </div>
-        ))}
-        {jobs.length === 0 && !loading && <p className="active-job-no-jobs">No active jobs found.</p>}
-      </div>
+          
+          <p className="active-job-description">{job.description}</p>
+          
+          <p className="active-job-budget">
+            <FaRupeeSign className="active-job-budget-icon" /> 
+            {job.budget}
+          </p>
+          
+          <p className="active-job-deadline">
+            <FaCalendarAlt className="active-job-deadline-icon" />
+            Deadline: {job.deadline}
+          </p>
+
+          {job.assigned_freelancer_name && (
+            <p className="active-job-freelancer">
+              <FaUser className="active-job-freelancer-icon" />
+              Assigned to: {job.assigned_freelancer_name}
+            </p>
+          )}
+
+          <div className="active-job-buttons">
+            {job.status.toLowerCase() === 'completed' && (
+              <button 
+                className="active-job-pay-button" 
+                onClick={() => payJob(job)}
+              >
+                <FaCheck /> Pay
+              </button>
+            )}
+
+            {job.status.toLowerCase() === 'paid' && (
+              <button className="active-job-paid-button" disabled>
+                <FaCheck /> Paid
+              </button>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
