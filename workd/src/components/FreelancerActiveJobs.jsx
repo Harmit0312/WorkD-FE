@@ -1,19 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import api from "../services/api";
-import { FaUser, FaTrash, FaCheck, FaRupeeSign } from 'react-icons/fa'; // Added FaCheck for complete button
-import './FreelancerActiveJobs.css'; // Import the separated CSS file
+import {
+  FaUser,
+  FaTrash,
+  FaCheck,
+  FaRupeeSign,
+  FaUpload,
+  FaFile,
+  FaEdit
+} from 'react-icons/fa';
+import './FreelancerActiveJobs.css';
 
 const FreelancerActiveJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [uploadedJobs, setUploadedJobs] = useState({});
+
+  // Load uploaded jobs from localStorage on mount
+  useEffect(() => {
+    const savedUploads = localStorage.getItem('freelancer_uploaded_jobs');
+    if (savedUploads) {
+      setUploadedJobs(JSON.parse(savedUploads));
+    }
+  }, []);
 
   const fetchJobs = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const res = await api.get("/users/get_my_assigned_jobs.php"); // Assumes endpoint returns freelancer's assigned jobs with client details and status
+      const res = await api.get("/users/get_my_assigned_jobs.php");
 
       if (res.data.status) {
         setJobs(res.data.jobs || []);
@@ -32,6 +49,92 @@ const FreelancerActiveJobs = () => {
     fetchJobs();
   }, []);
 
+  // Save uploaded jobs to localStorage
+  const saveUploadedJob = (jobId) => {
+    const newUploadedJobs = { ...uploadedJobs, [jobId]: true };
+    setUploadedJobs(newUploadedJobs);
+    localStorage.setItem('freelancer_uploaded_jobs', JSON.stringify(newUploadedJobs));
+  };
+
+  // MULTIPLE FILE UPLOAD HANDLER (Initial Upload)
+  const handleFileUpload = async (jobId, files) => {
+    if (!files || files.length === 0) {
+      alert("Please select at least one file.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("job_id", jobId);
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files[]", files[i]);
+    }
+
+    try {
+      const res = await api.post(
+        "/users/upload_job_files.php",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (res.data.status === true) {
+        alert(res.data.message || "Files uploaded successfully");
+        saveUploadedJob(jobId);
+        fetchJobs();
+      } else {
+        alert(res.data.message || "Upload failed");
+      }
+    } catch (err) {
+      alert(
+        err.response?.data?.message ||
+        "Something went wrong while uploading files"
+      );
+    }
+  };
+
+  // UPDATE FILE HANDLER (For jobs with uploaded files AND assigned status)
+  const handleFileUpdate = async (jobId, files) => {
+    if (!files || files.length === 0) {
+      alert("Please select at least one file.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("job_id", jobId);
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files[]", files[i]);
+    }
+
+    try {
+      const res = await api.post(
+        "/users/update_job_file.php",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (res.data.status === true) {
+        alert(res.data.message || "Files updated successfully");
+        fetchJobs();
+      } else {
+        alert(res.data.message || "Update failed");
+      }
+    } catch (err) {
+      alert(
+        err.response?.data?.message ||
+        "Something went wrong while updating files"
+      );
+    }
+  };
+
   const completeJob = async (jobId) => {
     if (!window.confirm("Mark this job as completed?")) return;
 
@@ -41,7 +144,7 @@ const FreelancerActiveJobs = () => {
       });
 
       alert(res.data.message || "Job marked as completed");
-      fetchJobs(); // Refresh the list
+      fetchJobs();
     } catch (err) {
       alert(
         err.response?.data?.message ||
@@ -59,7 +162,7 @@ const FreelancerActiveJobs = () => {
       });
 
       alert(res.data.message || "Job deleted successfully");
-      fetchJobs(); // Refresh the list
+      fetchJobs();
     } catch (err) {
       alert(
         err.response?.data?.message ||
@@ -86,28 +189,94 @@ const FreelancerActiveJobs = () => {
   return (
     <div className="freelancer-active-job-container">
       <h2 className="freelancer-active-job-title">My Active Jobs</h2>
-      {loading && <p className="freelancer-active-job-loading">Loading jobs...</p>}
-      {error && <p className="freelancer-active-job-error">{error}</p>}
+
+      {loading && (
+        <p className="freelancer-active-job-loading">Loading jobs...</p>
+      )}
+      {error && (
+        <p className="freelancer-active-job-error">{error}</p>
+      )}
+
       <div className="freelancer-active-job-list">
         {jobs.map(job => (
           <div key={job.id} className="freelancer-active-job-card">
             <h3 className="freelancer-active-job-job-title">{job.title}</h3>
-            <p className="freelancer-active-job-description">{job.description}</p>
-            <p className="freelancer-active-job-budget"><FaRupeeSign className="freelancer-active-job-budget-icon" />{job.budget}</p>
-            <p className={`freelancer-active-job-status ${getStatusClass(job.status)}`}>{job.status}</p>
-            <p className="freelancer-active-job-client">
-              <FaUser className="freelancer-active-job-icon" /> Client: {job.client_name}
+
+            <p className="freelancer-active-job-description">
+              {job.description}
             </p>
-            <p className="freelancer-active-job-deadline">Deadline: {job.deadline}</p> {/* New deadline display */}
+
+            <p className="freelancer-active-job-budget">
+              <FaRupeeSign /> {job.budget}
+            </p>
+
+            <p className={`freelancer-active-job-status ${getStatusClass(job.status)}`}>
+              {job.status}
+            </p>
+
+            <p className="freelancer-active-job-client">
+              <FaUser /> Client: {job.client_name}
+            </p>
+
+            <p className="freelancer-active-job-deadline">
+              Deadline: {job.deadline}
+            </p>
+
+            {/* UPLOAD SECTION (For assigned jobs) */}
+            {job.status.toLowerCase() === 'assigned' && (
+              <div className="freelancer-active-job-upload-section">
+                {uploadedJobs[job.id] ? (
+                  <div className="freelancer-active-job-uploaded">
+                    <FaFile />
+                    <span> Files Uploaded</span>
+                  </div>
+                ) : (
+                  <label className="freelancer-active-job-upload-label">
+                    <FaUpload className="freelancer-active-job-upload-icon" />
+                    <span>Upload Files</span>
+                    <input
+                      type="file"
+                      multiple
+                      onChange={(e) =>
+                        handleFileUpload(job.id, e.target.files)
+                      }
+                      style={{ display: 'none' }}
+                    />
+                  </label>
+                )}
+              </div>
+            )}
+
+            {/* UPDATE FILES SECTION (For uploaded files AND assigned status) */}
+            {uploadedJobs[job.id] && job.status.toLowerCase() === 'assigned' && (
+              <div className="freelancer-active-job-update-section">
+                <label className="freelancer-active-job-update-label">
+                  <FaEdit className="freelancer-active-job-update-icon" />
+                  <span>Update Files</span>
+                  <input
+                    type="file"
+                    multiple
+                    onChange={(e) =>
+                      handleFileUpdate(job.id, e.target.files)
+                    }
+                    style={{ display: 'none' }}
+                  />
+                </label>
+              </div>
+            )}
+
+            {/* ACTION BUTTONS */}
             <div className="freelancer-active-job-buttons">
-              {job.status.toLowerCase() === 'assigned' && (
-                <button
-                  className="freelancer-active-job-complete-button"
-                  onClick={() => completeJob(job.id)}
-                >
-                  <FaCheck /> Complete
-                </button>
-              )}
+              {job.status.toLowerCase() === 'assigned' &&
+                uploadedJobs[job.id] && (
+                  <button
+                    className="freelancer-active-job-complete-button"
+                    onClick={() => completeJob(job.id)}
+                  >
+                    <FaCheck /> Complete
+                  </button>
+                )}
+
               {job.status.toLowerCase() === 'paid' && (
                 <button
                   className="freelancer-active-job-delete-button"
@@ -119,7 +288,12 @@ const FreelancerActiveJobs = () => {
             </div>
           </div>
         ))}
-        {jobs.length === 0 && !loading && <p className="freelancer-active-job-no-jobs">No active jobs found.</p>}
+
+        {jobs.length === 0 && !loading && (
+          <p className="freelancer-active-job-no-jobs">
+            No active jobs found.
+          </p>
+        )}
       </div>
     </div>
   );
