@@ -6,6 +6,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import FreelancerDashboard from "./pages/FreelancerDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import "./index.css";
 import TestApi from "./components/TestApi"; // just for testing API
 
 
