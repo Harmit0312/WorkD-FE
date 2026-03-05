@@ -19,7 +19,7 @@ const LandingPage = ({ title = 'Freelance solutions by WOD', subtitle = 'Connect
         <img src={logo} alt="WOD Logo" className="landing-logo" />
         <div className="landing-nav-links">
           <a href="#features" className="landing-nav-link">Features</a>
-          <a href="#about" className="landing-nav-link">About</a>
+          <a href="" className="landing-nav-link" onClick={() => navigate('/aboutus')}>About</a>
         </div>
       </nav>
       <section className="landing-hero-section">
@@ -57,7 +57,7 @@ const LandingPage = ({ title = 'Freelance solutions by WOD', subtitle = 'Connect
         </div>
       </section>
       <footer className="landing-footer">
-        <p>&copy; 2023 WOD. All rights reserved. | <a href="/privacy" className="landing-footer-link">Privacy Policy</a></p>
+        <p>&copy; 2026 WOD. All rights reserved. | <a href="" className="landing-footer-link" onClick={() => navigate('/privacypolicy')}>Privacy Policy</a></p>
         <button onClick={scrollToTop} className="landing-scroll-to-top">
           <FaArrowUp />
         </button>

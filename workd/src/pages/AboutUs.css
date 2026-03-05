@@ -1,0 +1,210 @@
+/* About Us Styles - Independent with 'about-us-' prefix */
+@keyframes about-us-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.about-us-container {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #141e30, #243b55);
+    color: #ecf0f1;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    box-sizing: border-box;
+    padding: 100px 20px 40px;
+    animation: about-us-fadeIn 1s ease-out;
+}
+
+/* Hero Section */
+.about-us-hero {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.about-us-title {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 15px;
+    animation: about-us-fadeIn 1.5s ease-out;
+}
+
+.about-us-subtitle {
+    font-size: 1.5rem;
+    color: rgb(2, 140, 140);
+    margin-bottom: 20px;
+    animation: about-us-fadeIn 1.5s ease-out;
+}
+
+.about-us-description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #bdc3c7;
+    animation: about-us-fadeIn 1.5s ease-out;
+}
+
+/* Sections */
+.about-us-section {
+    margin-bottom: 60px;
+}
+
+.about-us-section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+/* Container Inner */
+.about-us-container-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Cards */
+.about-us-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: about-us-fadeIn 1.5s ease-out;
+}
+
+.about-us-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-us-icon {
+    font-size: 2.5rem;
+    color: rgb(2, 140, 140);
+    margin-bottom: 20px;
+}
+
+.about-us-card h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.about-us-card p {
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+/* Steps */
+.about-us-step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: about-us-fadeIn 1.5s ease-out;
+}
+
+.about-us-step-number {
+    width: 50px;
+    height: 50px;
+    background: rgb(2, 140, 140);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.about-us-step h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.about-us-step p {
+    color: #bdc3c7;
+    margin: 0;
+}
+
+/* Contact */
+.about-us-contact {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: about-us-fadeIn 1.5s ease-out;
+}
+
+.about-us-contact p {
+    color: #bdc3c7;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.about-us-contact strong {
+    color: #fff;
+}
+
+/* Footer */
+.about-us-footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 60px;
+}
+
+.about-us-footer p {
+    color: #bdc3c7;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-us-title {
+        font-size: 2rem;
+    }
+
+    .about-us-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .about-us-description {
+        font-size: 1rem;
+    }
+
+    .about-us-container-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .about-us-step {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-us-contact {
+        padding: 30px 20px;
+    }
+}
