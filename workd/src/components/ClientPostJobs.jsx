@@ -12,6 +12,9 @@ const JobPosting = () => {
   });
   const [error, setError] = useState('');
 
+  // Get today's date in YYYY-MM-DD format to set as the minimum date
+  const today = new Date().toISOString().split('T')[0];
+
   const validate = () => {
     if (!form.title || !form.description || !form.budget || !form.deadline) {
       setError('All fields are required');
@@ -60,8 +63,6 @@ const JobPosting = () => {
     }
   };
 
-
-
   return (
     <section className="job-post-section">
       <h1 className="job-post-title">Post a New Job</h1>
@@ -102,6 +103,7 @@ const JobPosting = () => {
           <input
             type="date"
             value={form.deadline}
+            min={today} /* <-- THIS PREVENTS PAST DATES FROM BEING SELECTED */
             onChange={(e) => setForm({ ...form, deadline: e.target.value })}
             required
           />
