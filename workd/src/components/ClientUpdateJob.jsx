@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import api from "../services/api";
 import { FaEdit, FaCheck, FaTimes, FaRupeeSign } from 'react-icons/fa';
-import './ClientUpdateJob.css'; // Import the separated CSS file
+import './ClientUpdateJob.css'; 
 
 const ClientJobUpdate = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [editingId, setEditingId] = useState(null); // Track which job is being edited
-  const [editForm, setEditForm] = useState({ title: '', description: '', budget: '', deadline: '' }); // Store edit form data, added deadline
+  const [editingId, setEditingId] = useState(null); 
+  const [editForm, setEditForm] = useState({ title: '', description: '', budget: '', deadline: '' }); 
+
+  // Get today's date in YYYY-MM-DD format to set as the minimum date
+  const today = new Date().toISOString().split('T')[0];
 
   const fetchJobs = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const res = await api.get("/users/get_my_jobs.php"); // Assumes endpoint returns client's active jobs
+      const res = await api.get("/users/get_my_jobs.php"); 
 
       if (res.data.status) {
         setJobs(res.data.jobs || []);
@@ -40,7 +43,7 @@ const ClientJobUpdate = () => {
       title: job.title, 
       description: job.description, 
       budget: String(job.budget), 
-      deadline: job.deadline || '' // Added deadline
+      deadline: job.deadline || '' 
     });
   };
 
@@ -56,12 +59,12 @@ const ClientJobUpdate = () => {
         title: editForm.title,
         description: editForm.description,
         budget: editForm.budget,
-        deadline: editForm.deadline, // Added deadline
+        deadline: editForm.deadline, 
       });
 
       alert(res.data.message || "Job updated successfully");
       setEditingId(null);
-      fetchJobs(); // Refresh the list
+      fetchJobs(); 
     } catch (err) {
       alert(
         err.response?.data?.message ||
@@ -72,7 +75,7 @@ const ClientJobUpdate = () => {
 
   const cancelEdit = () => {
     setEditingId(null);
-    setEditForm({ title: '', description: '', budget: '', deadline: '' }); // Added deadline
+    setEditForm({ title: '', description: '', budget: '', deadline: '' }); 
   };
 
   return (
@@ -111,6 +114,7 @@ const ClientJobUpdate = () => {
                   className="client-job-edit-input"
                   placeholder="Deadline"
                   value={editForm.deadline}
+                  min={today} /* <-- THIS PREVENTS PAST DATES FROM BEING SELECTED */
                   onChange={(e) => setEditForm({ ...editForm, deadline: e.target.value })}
                 />
                 <div className="client-job-edit-buttons">
