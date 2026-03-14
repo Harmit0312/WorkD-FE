@@ -1,304 +1,348 @@
-/* Freelancer Profile Styles - Independent with 'freelancer-profile-' prefix */
+/* Freelancer Profile - Graphite & Sunset Amber Theme */
 @keyframes freelancer-profile-fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Container */
+/* Container - Removed min-height and background gradient */
 .freelancer-profile-container {
-    min-height: 100vh;
-    background: linear-gradient(150deg, #141e30, #243b55);
-    color: #ecf0f1;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-    padding: 100px 20px 40px;
-    animation: freelancer-profile-fadeIn 1s ease-out;
+  width: 100%;
+  animation: freelancer-profile-fadeIn 0.6s ease-out;
 }
 
 .freelancer-profile-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--text-main);
+  font-weight: 700;
 }
 
+/* Status Messages */
 .freelancer-profile-success {
-    color: #27ae60;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.freelancer-profile-loading {
-    text-align: center;
-    color: #ecf0f1;
-    font-size: 1.2rem;
+  color: #10B981; /* Emerald Green */
+  text-align: center;
+  margin-bottom: 20px;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .freelancer-profile-error {
-    color: #e74c3c;
-    text-align: center;
-    margin-bottom: 20px;
+  color: #EF4444; /* Red */
+  text-align: center;
+  margin-bottom: 20px;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-/* Content */
+.freelancer-profile-loading {
+  text-align: center;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  padding: 40px 0;
+}
+
+/* Content Layout */
 .freelancer-profile-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
 
-/* Profile Info */
+/* Profile Info Cards */
 .freelancer-profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .freelancer-profile-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    animation: freelancer-profile-fadeIn 1.5s ease-out;
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.freelancer-profile-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(249, 115, 22, 0.3); /* Subtle amber hover */
 }
 
 .freelancer-profile-item-content {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .freelancer-profile-icon {
-    font-size: 1.5rem;
-    color: rgb(2, 140, 140);
+  font-size: 1.4rem;
+  color: var(--accent-color);
+  background: rgba(249, 115, 22, 0.1); /* Amber tint */
+  padding: 12px;
+  border-radius: 50%;
 }
 
 .freelancer-profile-item h3 {
-    margin: 0;
-    color: #fff;
-    font-size: 1.2rem;
+  margin: 0 0 4px 0;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .freelancer-profile-item p {
-    margin: 5px 0 0;
-    color: #bdc3c7;
-    font-size: 0.9rem;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
+/* Action Buttons inside Info Cards */
 .freelancer-profile-edit-button,
 .freelancer-profile-logout-button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .freelancer-profile-edit-button {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
 }
 
 .freelancer-profile-edit-button:hover {
-    background: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-muted);
 }
 
 .freelancer-profile-logout-button {
-    background: #e74c3c;
-    color: #fff;
+  background-color: rgba(239, 68, 68, 0.1); /* Transparent Red */
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .freelancer-profile-logout-button:hover {
-    transform: translateY(-2px);
+  background-color: #EF4444;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-/* Clients Worked With */
+/* Clients Worked With Section */
 .freelancer-profile-clients {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    animation: freelancer-profile-fadeIn 1.5s ease-out;
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
 }
 
 .freelancer-profile-clients h2 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #fff;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-main);
+  margin: 0 0 20px 0;
+  font-size: 1.3rem;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .freelancer-profile-clients-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .freelancer-profile-client-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 15px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  background-color: var(--bg-main); /* Recessed look */
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.2s;
+}
+
+.freelancer-profile-client-card:hover {
+  border-color: rgba(249, 115, 22, 0.3); /* Amber border hover */
 }
 
 .freelancer-profile-client-icon {
-    color: rgb(2, 140, 140);
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  background: rgba(249, 115, 22, 0.1);
+  padding: 10px;
+  border-radius: 50%;
 }
 
 .freelancer-profile-client-card h4 {
-    margin: 0;
-    color: #fff;
-    font-size: 1rem;
+  margin: 0 0 4px 0;
+  color: var(--text-main);
+  font-size: 1rem;
 }
 
 .freelancer-profile-client-card p {
-    margin: 5px 0 0;
-    color: #bdc3c7;
-    font-size: 0.8rem;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
-/* Modals */
+/* Edit Profile Modal */
 .freelancer-profile-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: freelancer-profile-fadeIn 0.2s ease-out;
 }
 
 .freelancer-profile-modal-content {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 100%;
-    color: #ecf0f1;
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 450px;
+  width: 90%;
+  color: var(--text-main);
 }
 
 .freelancer-profile-modal-content h2 {
-    margin-bottom: 20px;
-    color: #fff;
-    text-align: center;
+  margin: 0 0 20px 0;
+  color: var(--text-main);
+  text-align: center;
+  font-size: 1.4rem;
 }
 
 .freelancer-profile-modal form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .freelancer-profile-modal input,
 .freelancer-profile-modal textarea {
-    padding: 10px;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #ecf0f1;
-    outline: none;
-    transition: background 0.3s;
-    resize: vertical;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.freelancer-profile-modal textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
 .freelancer-profile-modal input::placeholder,
 .freelancer-profile-modal textarea::placeholder {
-    color: #bdc3c7;
+  color: var(--text-muted);
+  opacity: 0.7;
 }
 
 .freelancer-profile-modal input:focus,
 .freelancer-profile-modal textarea:focus {
-    background: rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15); /* Soft amber focus ring */
 }
 
 .freelancer-profile-modal-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .freelancer-profile-save-button,
 .freelancer-profile-cancel-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    justify-content: center;
-    flex: 1;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
 }
 
 .freelancer-profile-save-button {
-    background-color: rgb(2, 140, 140);
-    color: #fff;
+  background-color: var(--accent-color);
+  color: #ffffff;
 }
 
 .freelancer-profile-save-button:hover {
-    transform: translateY(-3px);
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
 }
 
 .freelancer-profile-cancel-button {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
 }
 
 .freelancer-profile-cancel-button:hover {
-    background: #fff;
-    color: #0a1f3a;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-muted);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .freelancer-profile-content {
-        grid-template-columns: 1fr;
-    }
+  .freelancer-profile-content {
+    grid-template-columns: 1fr;
+  }
 
-    .freelancer-profile-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
+  .freelancer-profile-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 
-    .freelancer-profile-modal-content {
-        padding: 20px;
-        margin: 20px;
-    }
+  .freelancer-profile-edit-button,
+  .freelancer-profile-logout-button {
+    width: 100%;
+    justify-content: center;
+  }
 
-    .freelancer-profile-modal-buttons {
-        flex-direction: column;
-    }
+  .freelancer-profile-modal-content {
+    padding: 24px;
+  }
+
+  .freelancer-profile-modal-buttons {
+    flex-direction: column;
+  }
 }

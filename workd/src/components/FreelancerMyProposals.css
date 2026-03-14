@@ -1,244 +1,289 @@
-/* Freelancer Proposals Styles - Independent with 'freelancer-proposal-' prefix */
+/* Freelancer Proposals - Graphite & Sunset Amber Theme */
 @keyframes freelancer-proposal-fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Container */
 .freelancer-proposal-container {
-    min-height: 100vh;
-    background: linear-gradient(150deg, #141e30, #243b55);
-    color: #ecf0f1;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-    padding: 100px 20px 40px;
-    animation: freelancer-proposal-fadeIn 1s ease-out;
+  width: 100%;
+  animation: freelancer-proposal-fadeIn 0.6s ease-out;
 }
 
 .freelancer-proposal-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+/* Status Messages */
+.freelancer-proposal-loading, 
+.freelancer-proposal-error {
+  text-align: center;
+  color: var(--text-main);
+  font-size: 1.1rem;
+  padding: 40px 0;
+}
+
+.freelancer-proposal-no-proposals {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-style: italic;
+  padding: 40px 0;
+  grid-column: 1 / -1;
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  border: 1px dashed var(--border-subtle);
 }
 
 /* Proposals List */
 .freelancer-proposal-list {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
 }
 
 .freelancer-proposal-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: freelancer-proposal-fadeIn 1.5s ease-out;
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .freelancer-proposal-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-color: rgba(249, 115, 22, 0.3); /* Amber border hover */
 }
 
+/* Card Typography */
 .freelancer-proposal-job-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #fff;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  color: var(--text-main);
 }
 
+.freelancer-proposal-client {
+  color: var(--text-muted);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.freelancer-proposal-icon {
+  color: var(--accent-color);
+}
+
+/* Status Badges - Modern Tinted Style */
 .freelancer-proposal-status {
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  align-self: flex-start; /* Keeps it from stretching full width */
 }
 
 .freelancer-proposal-status-pending {
-    background: #f39c12;
-    color: #fff;
+  background: rgba(245, 158, 11, 0.15); /* Amber/Yellow */
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .freelancer-proposal-status-accepted {
-    background: #27ae60;
-    color: #fff;
+  background: rgba(16, 185, 129, 0.15); /* Emerald Green */
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .freelancer-proposal-status-rejected {
-    background: #e74c3c;
-    color: #fff;
+  background: rgba(239, 68, 68, 0.15); /* Red */
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Content Details */
+.freelancer-proposal-job-description {
+  color: var(--text-muted);
+  margin-bottom: 15px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.freelancer-proposal-deadline {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-main);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  display: inline-flex;
 }
 
 .freelancer-proposal-message {
-    color: #bdc3c7;
-    margin-bottom: 20px;
-    line-height: 1.6;
+  background-color: var(--bg-main);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+  color: var(--text-main);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  font-style: italic;
+  flex-grow: 1; /* Pushes buttons to the bottom */
 }
 
+/* Edit Form */
 .freelancer-proposal-edit-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  flex-grow: 1;
 }
 
 .freelancer-proposal-edit-input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #ecf0f1;
-    resize: vertical;
-    outline: none;
-    transition: background 0.3s;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  min-height: 100px;
+  resize: vertical;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .freelancer-proposal-edit-input:focus {
-    background: rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15); /* Amber focus ring */
 }
 
+/* Edit Action Buttons */
 .freelancer-proposal-edit-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 .freelancer-proposal-save-button,
 .freelancer-proposal-cancel-button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
 }
 
 .freelancer-proposal-save-button {
-    background-color: rgb(2, 140, 140);
-    color: #fff;
+  background-color: var(--accent-color);
+  color: #ffffff;
 }
 
 .freelancer-proposal-save-button:hover {
-    transform: translateY(-2px);
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
 }
 
 .freelancer-proposal-cancel-button {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
 }
 
 .freelancer-proposal-cancel-button:hover {
-    background: #fff;
-    color: #0a1f3a;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-muted);
 }
 
+/* Main Action Buttons (Default State) */
 .freelancer-proposal-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
 }
 
 .freelancer-proposal-edit-button,
 .freelancer-proposal-withdraw-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1; /* Make buttons equal width */
 }
 
 .freelancer-proposal-edit-button {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
 }
 
 .freelancer-proposal-edit-button:hover {
-    background: #fff;
-    color: #0a1f3a;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-muted);
 }
 
 .freelancer-proposal-withdraw-button {
-    background: #e74c3c;
-    color: #fff;
+  background: rgba(239, 68, 68, 0.1); /* Transparent Red */
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .freelancer-proposal-withdraw-button:hover {
-    transform: translateY(-3px);
-}
-
-.freelancer-proposal-no-proposals {
-    text-align: center;
-    color: #bdc3c7;
-    font-style: italic;
-    grid-column: 1 / -1;
-}
-
-.freelancer-proposal-loading, .freelancer-proposal-error {
-    text-align: center;
-    color: #ecf0f1;
-    font-size: 1.2rem;
-}
-
-.freelancer-proposal-job-description {
-    color: #bdc3c7;
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-
-.freelancer-proposal-client {
-    color: #bdc3c7;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-style: italic;
-}
-
-.freelancer-proposal-icon {
-    color: rgb(2, 140, 140);
-}
-
-.freelancer-proposal-deadline {
-    color: #bdc3c7;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    font-weight: 600;
+  background: #EF4444;
+  color: #ffffff;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .freelancer-proposal-list {
-        grid-template-columns: 1fr;
-    }
+  .freelancer-proposal-list {
+    grid-template-columns: 1fr;
+  }
 
-    .freelancer-proposal-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .freelancer-proposal-card {
+    padding: 20px;
+  }
+
+  .freelancer-proposal-buttons {
+    flex-direction: column;
+  }
+
+  .freelancer-proposal-edit-button,
+  .freelancer-proposal-withdraw-button {
+    width: 100%;
+  }
 }
