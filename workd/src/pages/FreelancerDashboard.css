@@ -1,113 +1,215 @@
-/* Keyframes for Animations */
+/* Core Variables for Forest & Emerald Dark Theme */
+/* CHANGE :root TO .freelancer-layout */
+/* Core Variables for Graphite & Sunset Amber Theme */
+.freelancer-layout {
+  --bg-main: #0F0F11;       /* Very deep, sleek neutral black */
+  --bg-sidebar: #18181B;    /* Zinc 900 - Premium dark gray */
+  --bg-card: #27272A;       /* Elevated dark gray for cards */
+  --text-main: #FAFAFA;     /* Pure, crisp white */
+  --text-muted: #A1A1AA;    /* Smooth, readable gray */
+  --accent-color: #F97316;  /* Vibrant Sunset Orange */
+  --accent-hover: #EA580C;  /* Deeper Orange for hover */
+  --border-subtle: rgba(255, 255, 255, 0.05); /* Very faint dividers */
+
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+/* Animations */
 @keyframes fadeIn-freelancer {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideUp-freelancer {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* Base Layout Container */
+.freelancer-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
 }
 
-/* Container */
-.freelancer-container {
-    min-height: 100vh;
-    background: linear-gradient(150deg, #141e30, #243b55);
-    color: #ecf0f1;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-    padding-top: 80px;
+/* Sidebar Styling */
+.freelancer-sidebar {
+  width: 260px;
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-/* Navbar */
-.freelancer-navbar {
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: rgb(2, 140, 140);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    animation: fadeIn-freelancer 1s ease-out;
-    box-sizing: border-box;
+.freelancer-logo-container {
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .freelancer-logo {
-    width: 141px;
-    height: 69px;
-    border-radius: 60px;
-    object-fit: cover;
-    background-color: white;
-    animation: slideUp-freelancer 0.6s ease-out;
+  width: 120px;
+  height: auto;
+  border-radius: 8px; 
+  object-fit: contain;
+  background-color: #ffffff; /* Keep white backing for logo visibility */
+  padding: 5px;
 }
 
-.freelancer-nav-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    animation: slideUp-freelancer 0.6s ease-in;
+/* Navigation Menu */
+.freelancer-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 15px;
 }
 
 .freelancer-nav-link {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+/* .nav-icon {
+  margin-right: 12px;
+  font-size: 18px;
+} */
+
+/* Update nav-icon to be specific to freelancer */
+.freelancer-nav-link .nav-icon {
+  margin-right: 12px;
+  font-size: 18px;
 }
 
 .freelancer-nav-link:hover {
-    text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.freelancer-nav-link:hover .nav-icon {
+  color: var(--accent-color);
+}
+
+/* Active State for Links - Emerald Gradient Glow */
+/* Active State for Links - Sunset Amber Gradient Glow */
+.freelancer-nav-link.active {
+  background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%); /* Orange to Amber */
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35); /* Soft orange glow */
+  border-left: 4px solid #FDE047; /* Bright yellow/gold edge highlight */
+  padding-left: 16px;
+}
+
+.freelancer-nav-link.active .nav-icon {
+  color: #ffffff;
+}
+
+/* Main Content Area */
+.freelancer-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Topbar above content */
+.freelancer-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.freelancer-topbar h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Wrapper for the injected components */
+.freelancer-content-wrapper {
+  flex: 1;
+  padding: 40px;
+  animation: fadeIn-freelancer 0.5s ease-out;
 }
 
 /* Footer */
 .freelancer-footer {
-    padding: 40px 20px;
-    background-color: rgb(2, 140, 140);
-    color: #fff;
-    text-align: center;
-    position: relative;
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-sidebar);
 }
 
 .freelancer-footer-link {
-    color: #fff;
-    text-decoration: none;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .freelancer-footer-link:hover {
-    text-decoration: underline;
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .freelancer-navbar {
-        padding: 15px 20px;
-        flex-direction: column;
-        height: auto;
-    }
+/* Responsive Design for Tablets and Mobile */
+@media (max-width: 900px) {
+  .freelancer-layout {
+    flex-direction: column;
+  }
 
-    .freelancer-nav-links {
-        margin-top: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .freelancer-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .freelancer-logo-container {
+    padding: 15px;
+  }
+
+  .freelancer-nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .freelancer-nav-link {
+    white-space: nowrap;
+    padding: 10px 15px;
+  }
+
+  .freelancer-main {
+    height: auto;
+  }
+
+  .freelancer-content-wrapper {
+    padding: 20px;
+  }
 }

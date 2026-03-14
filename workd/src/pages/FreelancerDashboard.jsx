@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaFileAlt, FaHandshake, FaUser, FaHome } from 'react-icons/fa';
 import FreelancerStats from '../components/FreelancerStats';
@@ -11,58 +10,81 @@ import './FreelancerDashboard.css';
 import logo from '../assets/WOD-Logo.png';
 
 const FreelancerDashboard = () => {
+  // Refactored to a single state for clean tab switching
+  const [activeTab, setActiveTab] = useState('home');
 
-  const [DefaultComponent, setDefaultComponent] = useState(true);
-  const [showFindJobs, setShowFindJobs] = useState(false);
-  const [showMyProposals, setShowMyProposals] = useState(false);
-  const [showActiveJobs, setShowActiveJobs] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
-
-  const handleButtonClick = (temp,temp1,temp2,temp3,temp4) => {
-    temp(true);
-    temp1(false);
-    temp2(false);
-    temp3(false);
-    temp4(false);
-  }
+  // Renders the correct component based on the active tab
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home': return <FreelancerStats />;
+      case 'findJobs': return <FreelancerFindJobs />;
+      case 'myProposals': return <FreelancerMyProposals />;
+      case 'activeJobs': return <FreelancerActiveJobs />;
+      case 'profile': return <FreelancerProfile />;
+      default: return <FreelancerStats />;
+    }
+  };
 
   return (
-    <div className="freelancer-container">
-      <nav className="freelancer-navbar">
-        <img src={logo} alt="WOD Logo" className="freelancer-logo" />
-        <div className="freelancer-nav-links">
-          <Link to="" className="freelancer-nav-link" onClick={() => handleButtonClick(setDefaultComponent, setShowFindJobs, setShowMyProposals, setShowActiveJobs, setShowProfile)}>
-            <FaHome style={{ marginRight: '8px' }} />
-            Home
-          </Link>
-          <Link to="" className="freelancer-nav-link" onClick={() => handleButtonClick(setShowFindJobs, setDefaultComponent, setShowMyProposals, setShowActiveJobs, setShowProfile)}>
-            <FaSearch style={{ marginRight: '8px' }} />
-            Find Jobs
-          </Link>
-          <Link to="" className="freelancer-nav-link" onClick={() => handleButtonClick(setShowMyProposals, setShowFindJobs, setDefaultComponent, setShowActiveJobs, setShowProfile)}>
-            <FaFileAlt style={{ marginRight: '8px' }} />
-            My Proposals
-          </Link>
-          <Link to="" className="freelancer-nav-link" onClick={() => handleButtonClick(setShowActiveJobs, setShowFindJobs, setShowMyProposals, setDefaultComponent, setShowProfile)}>
-            <FaHandshake style={{ marginRight: '8px' }} />
-            Active Contracts
-          </Link>
-          <Link to="" className="freelancer-nav-link" onClick={() => handleButtonClick(setShowProfile, setShowFindJobs, setShowMyProposals, setShowActiveJobs, setDefaultComponent)}>
-            <FaUser style={{ marginRight: '8px' }} />
-            Profile
-          </Link>
+    <div className="freelancer-layout">
+      {/* Sidebar Navigation */}
+      <aside className="freelancer-sidebar">
+        <div className="freelancer-logo-container">
+          <img src={logo} alt="WOD Logo" className="freelancer-logo" />
         </div>
-      </nav>
 
-      {DefaultComponent && <FreelancerStats />}
-      {showFindJobs && <FreelancerFindJobs />}
-      {showMyProposals && <FreelancerMyProposals />}
-      {showActiveJobs && <FreelancerActiveJobs />}
-      {showProfile && <FreelancerProfile />}
-      
-      <footer className="freelancer-footer">
-        <p>&copy; 2026 WOD. All rights reserved. | <a href="/privacy" className="freelancer-footer-link">Privacy Policy</a></p>
-      </footer>
+        <nav className="freelancer-nav-menu">
+          <button 
+            className={`freelancer-nav-link ${activeTab === 'home' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('home')}
+          >
+            <FaHome className="nav-icon" /> Home
+          </button>
+          
+          <button 
+            className={`freelancer-nav-link ${activeTab === 'findJobs' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('findJobs')}
+          >
+            <FaSearch className="nav-icon" /> Find Jobs
+          </button>
+          
+          <button 
+            className={`freelancer-nav-link ${activeTab === 'myProposals' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('myProposals')}
+          >
+            <FaFileAlt className="nav-icon" /> My Proposals
+          </button>
+          
+          <button 
+            className={`freelancer-nav-link ${activeTab === 'activeJobs' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('activeJobs')}
+          >
+            <FaHandshake className="nav-icon" /> Active Contracts
+          </button>
+          
+          <button 
+            className={`freelancer-nav-link ${activeTab === 'profile' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('profile')}
+          >
+            <FaUser className="nav-icon" /> Profile
+          </button>
+        </nav>
+      </aside>
+
+      {/* Main Content Area */}
+      <main className="freelancer-main">
+        <header className="freelancer-topbar">
+          <h2>Freelancer Hub</h2>
+        </header>
+
+        <div className="freelancer-content-wrapper">
+          {renderContent()}
+        </div>
+
+        <footer className="freelancer-footer">
+          <p>&copy; 2026 WOD. All rights reserved. | <Link to="/privacy" className="freelancer-footer-link">Privacy Policy</Link></p>
+        </footer>
+      </main>
     </div>
   );
 };

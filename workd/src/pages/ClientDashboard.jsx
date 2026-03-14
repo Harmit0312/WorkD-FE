@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaPlus, FaEye, FaBriefcase, FaUser, FaHome } from 'react-icons/fa';
 import ClientStats from '../components/ClientStats';
@@ -12,65 +11,89 @@ import './ClientDashboard.css';
 import logo from '../assets/WOD-Logo.png';
 
 const ClientDashboard = () => {
+  // Refactored to a single state for cleaner logic
+  const [activeTab, setActiveTab] = useState('home');
 
-  const [DefaultComponent, setDefaultComponent] = useState(true);
-  const [showPostJobs, setShowPostJobs] = useState(false);
-  const [showProposals, setShowProposals] = useState(false);
-  const [showActiveJobs, setShowActiveJobs] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
-  const [showUpdateJob, setShowUpdateJob] = useState(false);
-
-  const handleButtonClick = (temp,temp1,temp2,temp3,temp4,temp5) => {
-    temp(true);
-    temp1(false);
-    temp2(false);
-    temp3(false);
-    temp4(false);
-    temp5(false);
-  }
+  // Renders the correct component based on the active tab
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home': return <ClientStats />;
+      case 'postJobs': return <ClientPostJobs />;
+      case 'proposals': return <ClientProposals />;
+      case 'activeJobs': return <ClientActiveJobs />;
+      case 'updateJob': return <ClientUpdateJob />;
+      case 'profile': return <ClientProfile />;
+      default: return <ClientStats />;
+    }
+  };
 
   return (
-    <div className="client-container">
-      <nav className="client-navbar">
-        <img src={logo} alt="WOD Logo" className="client-logo" />
-        <div className="client-nav-links">
-          <Link to="" className="client-nav-link" onClick={() => handleButtonClick(setDefaultComponent, setShowPostJobs, setShowProposals, setShowActiveJobs, setShowProfile, setShowUpdateJob)}>
-            <FaHome style={{ marginRight: '8px' }} />
-            Home
-          </Link>
-          <Link to="" className="client-nav-link" onClick={() => handleButtonClick(setShowPostJobs, setDefaultComponent, setShowProposals, setShowActiveJobs, setShowProfile, setShowUpdateJob)}>
-            <FaPlus style={{ marginRight: '8px' }} />
-            Post Job
-          </Link>
-          <Link to="" className="client-nav-link" onClick={() => handleButtonClick(setShowProposals, setDefaultComponent, setShowPostJobs, setShowActiveJobs, setShowProfile, setShowUpdateJob)}>
-            <FaEye style={{ marginRight: '8px' }} />
-            Proposals
-          </Link>
-          <Link to="" className="client-nav-link" onClick={() => handleButtonClick(setShowActiveJobs, setShowPostJobs, setShowProposals, setDefaultComponent, setShowProfile, setShowUpdateJob)}>
-            <FaBriefcase style={{ marginRight: '8px' }} />
-            Active Jobs
-          </Link>
-          <Link to="" className="client-nav-link" onClick={() => handleButtonClick(setShowUpdateJob, setShowPostJobs, setShowProposals, setShowActiveJobs, setShowProfile, setDefaultComponent)}>
-            <FaBriefcase style={{ marginRight: '8px' }} />
-            Update Job
-          </Link>
-          <Link to="" className="client-nav-link" onClick={() => handleButtonClick(setShowProfile, setShowPostJobs, setShowProposals, setShowActiveJobs, setShowUpdateJob, setDefaultComponent)}>
-            <FaUser style={{ marginRight: '8px' }} />
-            Profile
-          </Link>
+    <div className="client-layout">
+      {/* Sidebar Navigation */}
+      <aside className="client-sidebar">
+        <div className="client-logo-container">
+          <img src={logo} alt="WOD Logo" className="client-logo" />
         </div>
-      </nav>
-      
-      {DefaultComponent && <ClientStats />}
-      {showPostJobs && <ClientPostJobs />}
-      {showProposals && <ClientProposals />}
-      {showActiveJobs && <ClientActiveJobs />}
-      {showProfile && <ClientProfile />}
-      {showUpdateJob && <ClientUpdateJob />}
 
-      <footer className="client-footer">
-        <p>&copy; 2026 WOD. All rights reserved. | <a href="/privacy" className="client-footer-link">Privacy Policy</a></p>
-      </footer>
+        <nav className="client-nav-menu">
+          <button 
+            className={`client-nav-link ${activeTab === 'home' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('home')}
+          >
+            <FaHome className="nav-icon" /> Home
+          </button>
+          
+          <button 
+            className={`client-nav-link ${activeTab === 'postJobs' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('postJobs')}
+          >
+            <FaPlus className="nav-icon" /> Post Job
+          </button>
+          
+          <button 
+            className={`client-nav-link ${activeTab === 'proposals' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('proposals')}
+          >
+            <FaEye className="nav-icon" /> Proposals
+          </button>
+          
+          <button 
+            className={`client-nav-link ${activeTab === 'activeJobs' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('activeJobs')}
+          >
+            <FaBriefcase className="nav-icon" /> Active Jobs
+          </button>
+
+          <button 
+            className={`client-nav-link ${activeTab === 'updateJob' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('updateJob')}
+          >
+            <FaBriefcase className="nav-icon" /> Update Job
+          </button>
+          
+          <button 
+            className={`client-nav-link ${activeTab === 'profile' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('profile')}
+          >
+            <FaUser className="nav-icon" /> Profile
+          </button>
+        </nav>
+      </aside>
+
+      {/* Main Content Area */}
+      <main className="client-main">
+        <header className="client-topbar">
+          <h2>Client Workspace</h2>
+        </header>
+
+        <div className="client-content-wrapper">
+          {renderContent()}
+        </div>
+
+        <footer className="client-footer">
+          <p>&copy; 2026 WOD. All rights reserved. | <Link to="/privacy" className="client-footer-link">Privacy Policy</Link></p>
+        </footer>
+      </main>
     </div>
   );
 };

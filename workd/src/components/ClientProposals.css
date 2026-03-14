@@ -1,185 +1,217 @@
-/* Proposal Management Styles - Independent with 'proposal-' prefix */
+/* Client Proposals - Obsidian & Amethyst Theme */
 @keyframes proposal-fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Container */
+/* Container - Note: Removed min-height and background since the parent handles it */
 .proposal-container {
-    min-height: 100vh;
-    background: linear-gradient(150deg, #141e30, #243b55);
-    color: #ecf0f1;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-    padding: 100px 20px 40px;
-    animation: proposal-fadeIn 1s ease-out;
+  width: 100%;
+  animation: proposal-fadeIn 0.6s ease-out;
 }
 
 /* Jobs List */
 .proposal-list {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
+/* Main Job Card */
 .proposal-job-card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: proposal-fadeIn 1.5s ease-out;
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .proposal-job-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 30px rgba(42, 27, 61, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-color: rgba(139, 92, 246, 0.3); /* Subtle purple border on hover */
 }
 
+/* Typography */
 .proposal-job-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  color: var(--text-main);
 }
 
 .proposal-job-description {
-    color: #bdc3c7;
-    margin-bottom: 20px;
-    line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
 .proposal-job-budget {
-    font-weight: 600;
-    color: rgb(2, 140, 140);
-    margin-bottom: 20px;
+  font-weight: 600;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.proposal-budget-icon {
+  font-size: 1rem;
+}
+
+.proposal-job-deadline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  font-weight: 500;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 6px;
 }
 
 .proposal-freelancers-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #fff;
+  font-size: 1.1rem;
+  margin: 20px 0 15px 0;
+  color: var(--text-main);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
 }
 
+/* Freelancer Cards List */
 .proposal-freelancers-list {
-    display: grid;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+/* Individual Freelancer Application */
 .proposal-freelancer-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: var(--bg-main); /* Slightly darker than the card to inset it */
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.2s;
+}
+
+.proposal-freelancer-card:hover {
+  border-color: rgba(139, 92, 246, 0.4); /* Amethyst border highlight */
 }
 
 .proposal-freelancer-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .proposal-icon {
-    color: rgb(2, 140, 140);
+  color: var(--accent-color);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.2rem;
 }
 
 .proposal-freelancer-name {
-    font-weight: 600;
-    color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-main);
 }
 
 .proposal-freelancer-details {
-    color: #bdc3c7;
-    margin-bottom: 15px;
-    line-height: 1.5;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+  line-height: 1.6;
+  font-size: 0.9rem;
 }
 
+.proposal-freelancer-details strong {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* Proposal Message Box */
 .proposal-message {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 10px;
-    color: #ecf0f1;
-    margin-bottom: 15px;
+  background-color: rgba(139, 92, 246, 0.05); /* Very light purple tint */
+  border-left: 3px solid var(--accent-color);
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-main);
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-style: italic;
 }
 
+/* Buttons */
 .proposal-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 15px;
 }
 
 .proposal-view-button,
 .proposal-assign-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .proposal-view-button {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
 }
 
 .proposal-view-button:hover {
-    background: #fff;
-    color: #0a1f3a;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-muted);
 }
 
 .proposal-assign-button {
-    background-color: rgb(2, 140, 140);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 .proposal-assign-button:hover {
-    transform: translateY(-3px);
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
-.proposal-no-proposals {
-    color: #bdc3c7;
-    font-style: italic;
-}
-
-.proposal-loading, .proposal-error {
-    text-align: center;
-    color: #ecf0f1;
-    font-size: 1.2rem;
-}
-
-.proposal-job-deadline {
-    color: #bdc3c7;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    font-weight: 600;
+/* Status Messages */
+.proposal-no-proposals,
+.proposal-loading, 
+.proposal-error {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.95rem;
+  padding: 10px 0;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .proposal-list {
-        padding: 0 10px;
-    }
-
-    .proposal-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .proposal-job-card {
+    padding: 20px;
+  }
+  
+  .proposal-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

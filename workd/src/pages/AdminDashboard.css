@@ -1,113 +1,209 @@
-/* Keyframes for Animations */
+/* Core Variables for a Modern Dark Theme */
+/* Core Variables for Midnight Electric Teal Theme */
+/* CHANGE :root TO .admin-layout */
+.admin-layout {
+  --bg-dark: #0B1121;       
+  --bg-sidebar: #111827;    
+  --bg-card: #1F2937;       
+  --text-main: #F9FAFB;     
+  --text-muted: #9CA3AF;    
+  --accent-color: #0D9488;  
+  --accent-hover: #0F766E;  
+  --border-subtle: rgba(255, 255, 255, 0.06); 
+  
+  /* Move these base layout properties here too */
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+/* Animations */
 @keyframes fadeIn-admin {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideUp-admin {
-    from {
-        transform: translateY(50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+/* Base Layout Container */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
 }
 
-/* Container */
-.admin-container {
-    min-height: 100vh;
-    background: linear-gradient(150deg, #141e30, #243b55);
-    color: #ecf0f1;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-    position: relative;
-    box-sizing: border-box;
-    padding-top: 80px;
+/* Sidebar Styling */
+.admin-sidebar {
+  width: 260px;
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  /* border-right: 1px solid rgba(255, 255, 255, 0.05); */
+  border-right: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-/* Navbar */
-.admin-navbar {
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: rgb(2, 140, 140);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    animation: fadeIn-admin 1s ease-out;
-    box-sizing: border-box;
+.admin-logo-container {
+  padding: 30px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .admin-logo {
-    width: 141px;
-    height: 69px;
-    border-radius: 60px;
-    object-fit: cover;
-    background-color: white;
-    animation: slideUp-admin 0.6s ease-out;
+  width: 120px;
+  height: auto;
+  border-radius: 8px; /* Slightly squared edges look more modern than full round */
+  object-fit: contain;
+  background-color: #ffffff; /* Assuming your logo needs a white background */
+  padding: 5px;
 }
 
-.admin-nav-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    animation: slideUp-admin 0.6s ease-in;
+/* Navigation Menu */
+.admin-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 15px;
 }
 
 .admin-nav-link {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+
+/* .nav-icon {
+  margin-right: 12px;
+  font-size: 18px;
+} */
+
+.admin-nav-link .nav-icon {
+  margin-right: 12px;
+  font-size: 18px;
 }
 
 .admin-nav-link:hover {
-    text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+/* Active State for Links */
+/* Active State for Links - Upgraded with Gradient and Glow */
+.admin-nav-link.active {
+  background: linear-gradient(135deg, #0D9488 0%, #06B6D4 100%); /* Teal to Cyan gradient */
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.35); /* Soft teal glow */
+  border-left: 4px solid #67E8F9; /* Bright cyan edge highlight */
+  padding-left: 16px; /* Adjust padding to account for the border */
+}
+
+/* Main Content Area */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Topbar above content */
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: var(--bg-dark);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.05); */
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.admin-topbar h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Wrapper for the injected components */
+.admin-content-wrapper {
+  flex: 1;
+  padding: 40px;
+  animation: fadeIn-admin 0.5s ease-out;
 }
 
 /* Footer */
 .admin-footer {
-    padding: 40px 20px;
-    background-color: rgb(2, 140, 140);
-    color: #fff;
-    text-align: center;
-    position: relative;
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-dark);
 }
 
 .admin-footer-link {
-    color: #fff;
-    text-decoration: none;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .admin-footer-link:hover {
-    text-decoration: underline;
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .admin-navbar {
-        padding: 15px 20px;
-        flex-direction: column;
-        height: auto;
-    }
+/* Responsive Design for Tablets and Mobile */
+@media (max-width: 900px) {
+  .admin-layout {
+    flex-direction: column;
+  }
 
-    .admin-nav-links {
-        margin-top: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .admin-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .admin-logo-container {
+    padding: 15px;
+  }
+
+  .admin-nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .admin-nav-link {
+    white-space: nowrap;
+    padding: 10px 15px;
+  }
+
+  .admin-main {
+    height: auto;
+  }
+
+  .admin-content-wrapper {
+    padding: 20px;
+  }
 }

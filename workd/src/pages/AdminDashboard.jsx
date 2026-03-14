@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserFriends, FaClipboardList, FaMoneyBillWave, FaCog, FaHome } from 'react-icons/fa';
 import AdminStats from '../components/AdminStats';
@@ -11,58 +10,82 @@ import './AdminDashboard.css';
 import logo from '../assets/WOD-Logo.png';
 
 const AdminDashboard = () => {
+  // Refactored to a single state for cleaner logic
+  const [activeTab, setActiveTab] = useState('home');
 
-  const [DefaultComponent, setDefaultComponent] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
-  const [showEarnings, setShowEarnings] = useState(false);
-  const [showJobs, setShowJobs] = useState(false);
-  const [showUsers, setShowUsers] = useState(false);
-
-  const handleButtonClick = (temp,temp1,temp2,temp3,temp4) => {
-    temp(true);
-    temp1(false);
-    temp2(false);
-    temp3(false);
-    temp4(false);
-  }
+  // Function to render the correct component based on the active tab
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home': return <AdminStats />;
+      case 'users': return <AdminManageUsers />;
+      case 'jobs': return <AdminJobs />;
+      case 'earnings': return <AdminEarnings />;
+      case 'settings': return <AdminSettings />;
+      default: return <AdminStats />;
+    }
+  };
 
   return (
-    <div className="admin-container">
-      <nav className="admin-navbar">
-        <img src={logo} alt="WOD Logo" className="admin-logo" />
-        <div className="admin-nav-links">
-          <Link to="" className="admin-nav-link" onClick={() => handleButtonClick(setDefaultComponent, setShowSettings, setShowEarnings, setShowJobs, setShowUsers)}>
-            <FaHome style={{ marginRight: '8px' }} />
-            Home
-          </Link>
-          <Link to="" className="admin-nav-link" onClick={() => handleButtonClick(setShowUsers, setDefaultComponent, setShowSettings, setShowEarnings, setShowJobs)}>
-            <FaUserFriends style={{ marginRight: '8px' }} />
-            Manage Users
-          </Link>
-          <Link to="" className="admin-nav-link" onClick={() => handleButtonClick(setShowJobs, setDefaultComponent, setShowSettings, setShowEarnings, setShowUsers)}>
-            <FaClipboardList style={{ marginRight: '8px' }} />
-            Jobs
-          </Link>
-          <Link to="" className="admin-nav-link" onClick={() => handleButtonClick(setShowEarnings, setDefaultComponent, setShowSettings, setShowJobs, setShowUsers)}>
-            <FaMoneyBillWave style={{ marginRight: '8px' }} />
-            Earnings
-          </Link>
-          <Link to="" className="admin-nav-link" onClick={() => handleButtonClick(setShowSettings, setDefaultComponent, setShowEarnings, setShowJobs, setShowUsers)}>
-            <FaCog style={{ marginRight: '8px' }} />
-            Settings
-          </Link>
+    <div className="admin-layout">
+      {/* Sidebar Navigation */}
+      <aside className="admin-sidebar">
+        <div className="admin-logo-container">
+          <img src={logo} alt="WOD Logo" className="admin-logo" />
         </div>
-      </nav>
 
-      {DefaultComponent && <AdminStats />}
-      {showSettings && <AdminSettings />}
-      {showEarnings && <AdminEarnings />}
-      {showJobs && <AdminJobs />}
-      {showUsers && <AdminManageUsers />}
+        <nav className="admin-nav-menu">
+          <button 
+            className={`admin-nav-link ${activeTab === 'home' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('home')}
+          >
+            <FaHome className="nav-icon" /> Home
+          </button>
+          
+          <button 
+            className={`admin-nav-link ${activeTab === 'users' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('users')}
+          >
+            <FaUserFriends className="nav-icon" /> Manage Users
+          </button>
+          
+          <button 
+            className={`admin-nav-link ${activeTab === 'jobs' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('jobs')}
+          >
+            <FaClipboardList className="nav-icon" /> Jobs
+          </button>
+          
+          <button 
+            className={`admin-nav-link ${activeTab === 'earnings' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('earnings')}
+          >
+            <FaMoneyBillWave className="nav-icon" /> Earnings
+          </button>
+          
+          <button 
+            className={`admin-nav-link ${activeTab === 'settings' ? 'active' : ''}`} 
+            onClick={() => setActiveTab('settings')}
+          >
+            <FaCog className="nav-icon" /> Settings
+          </button>
+        </nav>
+      </aside>
 
-      <footer className="admin-footer">
-        <p>&copy; 2026 WOD. All rights reserved. | <a href="/privacy" className="admin-footer-link">Privacy Policy</a></p>
-      </footer>
+      {/* Main Content Area */}
+      <main className="admin-main">
+        <header className="admin-topbar">
+          <h2>Dashboard Overview</h2>
+          {/* You can add a user profile or logout button here later */}
+        </header>
+
+        <div className="admin-content-wrapper">
+          {renderContent()}
+        </div>
+
+        <footer className="admin-footer">
+          <p>&copy; 2026 WOD. All rights reserved. | <Link to="/privacy" className="admin-footer-link">Privacy Policy</Link></p>
+        </footer>
+      </main>
     </div>
   );
 };
